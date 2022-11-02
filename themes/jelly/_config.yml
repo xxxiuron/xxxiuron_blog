@@ -41,7 +41,7 @@ avatar: /img/avatar2.jpg
 music:
   enable: ture
   # id of a certain music on NetEase Cloud Music
-  id: 1481575515
+  id: 167873
 
 # if you need to enable disqus, set 'disqus_shortname' to your disqus username
 # disqus_shortname:
