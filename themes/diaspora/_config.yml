@@ -7,10 +7,10 @@ menu:
   关于: /about
 
 # 是否显示目录
-TOC: false
+TOC: ture
 
 # 是否自动播放音乐
-autoplay: false
+autoplay: ture
 
 # 默认音乐（随机播放）
 mp3: 
