@@ -80,7 +80,7 @@ favicon: /img/favicon.png
 
 # Avatar (頭像)
 avatar:
-  img: https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/%E5%A4%B4%E5%83%8F1.jpg?Expires=1668383827&OSSAccessKeyId=TMP.3Kg59qRrreoThKiogUJEbXWyXBpdcdRfJL1W9HFeHDFPXkbAVz5ZGiTCs2nBEhfvTLGh4DstLKCShYKWFNNpF8xgtSYywu&Signature=68MWS%2BvS2mOTyYlq%2Ft74183pBG4%3D
+  img: https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/%E5%A4%B4%E5%83%8F1.jpg
   effect: false
 
 # Disable all banner image
