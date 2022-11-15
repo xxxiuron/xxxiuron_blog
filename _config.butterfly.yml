@@ -196,7 +196,7 @@ toc:
 
 post_copyright:
   enable: true
-  decode: false
+  decode: true
   author_href:
   license: CC BY-NC-SA 4.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
@@ -526,7 +526,7 @@ tag_ui: # 留空或 index
 # Website Background (設置網站背景)
 # can set it to color or image (可設置圖片 或者 顔色)
 # The formal of image: url(http://xxxxxx.com/xxx.jpg)
-background: url(https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/background_cover.png)
+background: url(https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/background_cover.jpg)
 
 # Footer Background
 footer_bg: false
