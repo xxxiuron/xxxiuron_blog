@@ -823,6 +823,7 @@ Any content (support inline tags too.io).
 {% endtabs %}
 
 ### 2.6 动态标签 anima
+
 {% tabs 动态标签anima %}
 <!-- tab 标签语法  -->
 ```MARKDOWN
@@ -882,6 +883,347 @@ You can regulate the speed of the animation by adding the CSS class or . faa-fas
 
 {% tip warning faa-parent animated-hover %}<p class="faa-horizontal">warning</p>{% endtip %}
 {% tip ban faa-parent animated-hover %}<p class="faa-flash">ban</p>{% endtip %}
+
+<!-- endtab -->
+{% endtabs %}
+
+
+### 2.7 复选列表 checkbox
+
+{% tabs 复选列表checkbox %}
+<!-- tab 标签语法  -->
+```MARKDOWN
+{% checkbox 样式参数（可选）, 文本（支持简单md） %}
+```
+<!-- endtab -->
+
+<!-- tab 配置参数 -->
+1. {% span red, 样式 %}: plus, minus, times
+2. {% span red, 颜色 %}: red,yellow,green,cyan,blue,gray
+3. {% span red, 选中状态 %}: checked
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+```MARKDOWN
+{% checkbox 纯文本测试 %}
+{% checkbox checked, 支持简单的 [markdown](https://guides.github.com/features/mastering-markdown/) 语法 %}
+{% checkbox red, 支持自定义颜色 %}
+{% checkbox green checked, 绿色 + 默认选中 %}
+{% checkbox yellow checked, 黄色 + 默认选中 %}
+{% checkbox cyan checked, 青色 + 默认选中 %}
+{% checkbox blue checked, 蓝色 + 默认选中 %}
+{% checkbox plus green checked, 增加 %}
+{% checkbox minus yellow checked, 减少 %}
+{% checkbox times red checked, 叉 %}
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
+{% checkbox 纯文本测试 %}
+{% checkbox checked, 支持简单的 [markdown](https://guides.github.com/features/mastering-markdown/) 语法 %}
+{% checkbox red, 支持自定义颜色 %}
+{% checkbox green checked, 绿色 + 默认选中 %}
+{% checkbox yellow checked, 黄色 + 默认选中 %}
+{% checkbox cyan checked, 青色 + 默认选中 %}
+{% checkbox blue checked, 蓝色 + 默认选中 %}
+{% checkbox plus green checked, 增加 %}
+{% checkbox minus yellow checked, 减少 %}
+{% checkbox times red checked, 叉 %}
+<!-- endtab -->
+{% endtabs %}
+
+### 2.8 单选列表 radio
+
+{% tabs 单选列表radio %}
+<!-- tab 标签语法  -->
+```MARKDOWN
+{% radio 样式参数（可选）, 文本（支持简单md） %}
+```
+<!-- endtab -->
+
+<!-- tab 配置参数 -->
+1. {% span red, 颜色 %}: red,yellow,green,cyan,blue,gray
+2. {% span red, 选中状态 %}: checked
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+```MARKDOWN
+
+{% radio 纯文本测试 %}
+{% radio checked, 支持简单的 [markdown](https://guides.github.com/features/mastering-markdown/) 语法 %}
+{% radio red, 支持自定义颜色 %}
+{% radio green, 绿色 %}
+{% radio yellow, 黄色 %}
+{% radio cyan, 青色 %}
+{% radio blue, 蓝色 %}
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
+
+{% radio 纯文本测试 %}
+{% radio checked, 支持简单的 [markdown](https://guides.github.com/features/mastering-markdown/) 语法 %}
+{% radio red, 支持自定义颜色 %}
+{% radio green, 绿色 %}
+{% radio yellow, 黄色 %}
+{% radio cyan, 青色 %}
+{% radio blue, 蓝色 %}
+<!-- endtab -->
+{% endtabs %}
+
+### 2.9 时间轴 timeline
+
+{% tabs 时间轴timeline %}
+<!-- tab 标签语法  -->
+```MARKDOWN
+{% timeline 时间线标题（可选）[,color] %}
+<!-- timeline 时间节点（标题） -->
+正文内容
+<!-- endtimeline -->
+<!-- timeline 时间节点（标题） -->
+正文内容
+<!-- endtimeline -->
+{% endtimeline %}
+```
+<!-- endtab -->
+
+<!-- tab 配置参数 -->
+1. {% span red, title %}: 标题 / 时间线
+2. {% span red, color %}:timeline 颜色:default (留空) /blue/pink /red/purple /orange/green
+
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+```MARKDOWN
+{% timeline 时间轴样式,blue %}
+
+<!-- timeline 2020-07-24 [2.6.6 -> 3.0](https://github.com/volantis-x/hexo-theme-volantis/releases) -->
+
+1. 如果有 `hexo-lazyload-image` 插件，需要删除并重新安装最新版本，设置 `lazyload.isSPA: true`。
+2. 2.x 版本的 css 和 js 不适用于 3.x 版本，如果使用了 `use_cdn: true` 则需要删除。
+3. 2.x 版本的 fancybox 标签在 3.x 版本中被重命名为 gallery 。
+4. 2.x 版本的置顶 `top: true` 改为了 `pin: true`，并且同样适用于 `layout: page` 的页面。
+5. 如果使用了 `hexo-offline` 插件，建议卸载，3.0 版本默认开启了 pjax 服务。
+
+<!-- endtimeline -->
+
+<!-- timeline 2020-05-15 [2.6.3 -> 2.6.6](https://github.com/volantis-x/hexo-theme-volantis/releases/tag/2.6.6) -->
+
+不需要额外处理。
+
+<!-- endtimeline -->
+
+<!-- timeline 2020-04-20 [2.6.2 -> 2.6.3](https://github.com/volantis-x/hexo-theme-volantis/releases/tag/2.6.3) -->
+
+1. 全局搜索 `seotitle` 并替换为 `seo_title`。
+2. group 组件的索引规则有变，使用 group 组件的文章内，`group: group_name` 对应的组件名必须是 `group_name`。
+2. group 组件的列表名优先显示文章的 `short_title` 其次是 `title`。
+
+<!-- endtimeline -->
+
+{% endtimeline %}
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
+{% timeline 时间轴样式,blue %}
+
+<!-- timeline 2020-07-24 [2.6.6 -> 3.0](https://github.com/volantis-x/hexo-theme-volantis/releases) -->
+
+1. 如果有 `hexo-lazyload-image` 插件，需要删除并重新安装最新版本，设置 `lazyload.isSPA: true`。
+2. 2.x 版本的 css 和 js 不适用于 3.x 版本，如果使用了 `use_cdn: true` 则需要删除。
+3. 2.x 版本的 fancybox 标签在 3.x 版本中被重命名为 gallery 。
+4. 2.x 版本的置顶 `top: true` 改为了 `pin: true`，并且同样适用于 `layout: page` 的页面。
+5. 如果使用了 `hexo-offline` 插件，建议卸载，3.0 版本默认开启了 pjax 服务。
+
+<!-- endtimeline -->
+
+<!-- timeline 2020-05-15 [2.6.3 -> 2.6.6](https://github.com/volantis-x/hexo-theme-volantis/releases/tag/2.6.6) -->
+
+不需要额外处理。
+
+<!-- endtimeline -->
+
+<!-- timeline 2020-04-20 [2.6.2 -> 2.6.3](https://github.com/volantis-x/hexo-theme-volantis/releases/tag/2.6.3) -->
+
+1. 全局搜索 `seotitle` 并替换为 `seo_title`。
+2. group 组件的索引规则有变，使用 group 组件的文章内，`group: group_name` 对应的组件名必须是 `group_name`。
+2. group 组件的列表名优先显示文章的 `short_title` 其次是 `title`。
+
+<!-- endtimeline -->
+
+{% endtimeline %}
+<!-- endtab -->
+{% endtabs %}
+
+### 2.10 链接卡片 link
+
+{% tabs 链接卡片link %}
+<!-- tab 标签语法  -->
+```MARKDOWN
+{% link 标题, 链接, 图片链接（可选） %}
+```
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+```MARKDOWN
+{% link 糖果屋教程贴, https://akilar.top/posts/615e2dec/, https://cdn.cbd.int/akilar-candyassets@1.0.36/image/siteicon/favicon.ico %}
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
+{% link 糖果屋教程贴, https://akilar.top/posts/615e2dec/, https://cdn.cbd.int/akilar-candyassets@1.0.36/image/siteicon/favicon.ico %}
+<!-- endtab -->
+{% endtabs %}
+
+### 2.11 按钮 btns
+
+{% tabs 按钮btns %}
+<!-- tab 标签语法  -->
+```MARKDOWN
+{% btns 样式参数 %}
+{% cell 标题, 链接, 图片或者图标 %}
+{% cell 标题, 链接, 图片或者图标 %}
+{% endbtns %}
+```
+<!-- endtab -->
+
+<!-- tab 配置参数 -->
+1. {% span red, 圆角样式 %}：rounded, circle
+2. {% span red, 增加文字样式 %}：可以在容器内增加 <b> 标题 </b> 和 <p> 描述文字 </p>
+3. {% span red, 布局方式 %}：
+默认为自动宽度，适合视野内只有一两个的情况。
+
+|参数	| 含义|
+|-----|-----|
+|wide	|宽一点的按钮|
+|fill	|填充布局，自动铺满至少一行，多了会换行|
+|center	|居中，按钮之间是固定间距|
+|around	|居中分散|
+|grid2	|等宽最多 2 列，屏幕变窄会适当减少列数|
+|grid3	|等宽最多 3 列，屏幕变窄会适当减少列数|
+|grid4	|等宽最多 4 列，屏幕变窄会适当减少列数|
+|grid5	|等宽最多 5 列，屏幕变窄会适当减少列数|
+
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+1.如果需要显示类似「团队成员」之类的一组含有头像的链接
+```MARKDOWN
+{% btns circle grid5 %}
+{% cell xxxiuron, https://x-xiuron.com, https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/%E5%A4%B4%E5%83%8F1.jpg %}
+{% cell xxxiuron, https://x-xiuron.com, https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/%E5%A4%B4%E5%83%8F1.jpg %}
+{% cell xxxiuron, https://x-xiuron.com, https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/%E5%A4%B4%E5%83%8F1.jpg %}
+{% cell xxxiuron, https://x-xiuron.com, https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/%E5%A4%B4%E5%83%8F1.jpg %}
+{% cell xxxiuron, https://x-xiuron.com, https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/%E5%A4%B4%E5%83%8F1.jpg %}
+{% endbtns %}
+```
+2.或者含有图标的按钮
+```MARKDOWN
+{% btns rounded grid5 %}
+{% cell 下载源码, /, fas fa-download %}
+{% cell 查看文档, /, fas fa-book-open %}
+{% endbtns %}
+```
+3.圆形图标 + 标题 + 描述 + 图片 + 网格 5 列 + 居中
+```MARKDOWN
+{% btns circle center grid5 %}
+<a href='https://apps.apple.com/cn/app/heart-mate-pro-hrm-utility/id1463348922?ls=1'>
+  <i class='fab fa-apple'></i>
+  <b>心率管家</b>
+  {% p red, 专业版 %}
+  <img src='https://cdn.jsdelivr.net/gh/fomalhaut1998/cdn-assets/qrcode/heartmate_pro.png'>
+</a>
+<a href='https://apps.apple.com/cn/app/heart-mate-lite-hrm-utility/id1475747930?ls=1'>
+  <i class='fab fa-apple'></i>
+  <b>心率管家</b>
+  {% p green, 免费版 %}
+  <img src='https://cdn.jsdelivr.net/gh/fomalhaut1998/cdn-assets/qrcode/heartmate_lite.png'>
+</a>
+{% endbtns %}
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
+1.如果需要显示类似「团队成员」之类的一组含有头像的链接
+
+{% btns circle grid5 %}
+{% cell xxxiuron, https://x-xiuron.com, https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/%E5%A4%B4%E5%83%8F1.jpg %}
+{% cell xxxiuron, https://x-xiuron.com, https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/%E5%A4%B4%E5%83%8F1.jpg %}
+{% cell xxxiuron, https://x-xiuron.com, https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/%E5%A4%B4%E5%83%8F1.jpg %}
+{% cell xxxiuron, https://x-xiuron.com, https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/%E5%A4%B4%E5%83%8F1.jpg %}
+{% cell xxxiuron, https://x-xiuron.com, https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/%E5%A4%B4%E5%83%8F1.jpg %}
+{% endbtns %}
+
+2.或者含有图标的按钮
+
+{% btns rounded grid5 %}
+{% cell 下载源码, /, fas fa-download %}
+{% cell 查看文档, /, fas fa-book-open %}
+{% endbtns %}
+
+3.圆形图标 + 标题 + 描述 + 图片 + 网格 5 列 + 居中
+
+{% btns circle center grid5 %}
+<a href='https://apps.apple.com/cn/app/heart-mate-pro-hrm-utility/id1463348922?ls=1'>
+  <i class='fab fa-apple'></i>
+  <b>心率管家</b>
+  {% p red, 专业版 %}
+  <img src='https://cdn.jsdelivr.net/gh/fomalhaut1998/cdn-assets/qrcode/heartmate_pro.png'>
+</a>
+<a href='https://apps.apple.com/cn/app/heart-mate-lite-hrm-utility/id1475747930?ls=1'>
+  <i class='fab fa-apple'></i>
+  <b>心率管家</b>
+  {% p green, 免费版 %}
+  <img src='https://cdn.jsdelivr.net/gh/fomalhaut1998/cdn-assets/qrcode/heartmate_lite.png'>
+</a>
+{% endbtns %}
+
+<!-- endtab -->
+{% endtabs %}
+
+### 2.12 github 卡片 ghcard
+
+{% tabs github 卡片ghcard %}
+<!-- tab 标签语法  -->
+```MARKDOWN
+{% ghcard 用户名, 其它参数（可选） %}
+{% ghcard 用户名/仓库, 其它参数（可选） %}
+```
+<!-- endtab -->
+
+<!-- tab 配置参数 -->
+使用 , 分割各个参数。写法为：参数名=参数值
+以下只写几个常用参数值。
+
+| 参数名| 取值 | 释义 |
+|---------|--------|--------|
+|hide | stars,commits,prs,issues,contribs	| 隐藏指定统计 |
+|count_private|	true	|将私人项目贡献添加到总提交计数中 |
+|show_icons	| true | 显示图标 |
+|theme | 查阅:Available Themes | 主题 |
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+1. 用户信息卡片
+```MARKDOWN
+| {% ghcard xxxiuron %} | {% ghcard xxxiuron, theme=vue %} |
+| -- | -- |
+| {% ghcard xxxiuron, theme=buefy %} | {% ghcard xxxiuron, theme=solarized-light %} |
+| {% ghcard xxxiuron, theme=onedark %} | {% ghcard xxxiuron, theme=solarized-dark %} |
+| {% ghcard xxxiuron, theme=algolia %} | {% ghcard xxxiuron, theme=calm %} |
+```
+2. 仓库信息卡片
+```MARKDOWN
+| {% ghcard volantis-x/hexo-theme-volantis %} | {% ghcard volantis-x/hexo-theme-volantis, theme=vue %} |
+| -- | -- |
+| {% ghcard volantis-x/hexo-theme-volantis, theme=buefy %} | {% ghcard volantis-x/hexo-theme-volantis, theme=solarized-light %} |
+| {% ghcard volantis-x/hexo-theme-volantis, theme=onedark %} | {% ghcard volantis-x/hexo-theme-volantis, theme=solarized-dark %} |
+| {% ghcard volantis-x/hexo-theme-volantis, theme=algolia %} | {% ghcard volantis-x/hexo-theme-volantis, theme=calm %} |
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
 
 <!-- endtab -->
 {% endtabs %}
