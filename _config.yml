@@ -114,7 +114,7 @@ search:
   # Live2D
 ## https://github.com/EYHN/hexo-helper-live2d
 live2d:
-  enable: true #开关插件版看板娘
+  enable: false #开关插件版看板娘
   scriptFrom: local # 默认
   pluginRootPath: live2dw/ # 插件在站点上的根目录(相对路径)
   pluginJsPath: lib/ # 脚本文件相对与插件根目录路径
@@ -235,3 +235,6 @@ wowjs:
   animate_css: https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/animate.min.css
   wow_js: https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow.min.js
   wow_init_js: https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow_init.js
+
+butterfly_article_double_row:
+  enable: true

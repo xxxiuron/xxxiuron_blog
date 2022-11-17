@@ -814,7 +814,7 @@ note:
 # It may contain bugs and unstable, give feedback when you find the bugs.
 # https://github.com/MoOx/pjax
 pjax:
-  enable: false
+  enable: true
   exclude:
     # - xxxx
     # - xxxx
@@ -822,7 +822,7 @@ pjax:
 # Inject the css and script (aplayer/meting)
 aplayerInject:
   enable: true
-  per_page: false
+  per_page: true
 
 # Snackbar (Toast Notification 彈窗)
 # https://github.com/polonel/SnackBar
@@ -887,6 +887,7 @@ inject:
     - <link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'">
   bottom: 
     - <script defer src="/js/light.js"></script> # 霓虹灯(必须defer否则有时候会不生效)
+    - <div class="aplayer no -destroy" data-id="7751854850" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="true" data-order="random"> </div>
 
 # CDN
 # Don't modify the following settings unless you know how they work

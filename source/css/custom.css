@@ -61,3 +61,9 @@
 .menus_items .menus_item:nth-child(2) .menus_item_child {
   left: -125px;
 }
+
+/* 翻页按钮居中 */
+#pagination {
+  width: 100%;
+  margin: auto;
+}
