@@ -1225,5 +1225,1105 @@ You can regulate the speed of the animation by adding the CSS class or . faa-fas
 
 <!-- tab 渲染演示 -->
 
+| {% ghcard xxxiuron %} | {% ghcard xxxiuron, theme=vue %} |
+| -- | -- |
+| {% ghcard xxxiuron, theme=buefy %} | {% ghcard xxxiuron, theme=solarized-light %} |
+| {% ghcard xxxiuron, theme=onedark %} | {% ghcard xxxiuron, theme=solarized-dark %} |
+| {% ghcard xxxiuron, theme=algolia %} | {% ghcard xxxiuron, theme=calm %} |
+
+2. 仓库信息卡片
+
+| {% ghcard volantis-x/hexo-theme-volantis %} | {% ghcard volantis-x/hexo-theme-volantis, theme=vue %} |
+| -- | -- |
+| {% ghcard volantis-x/hexo-theme-volantis, theme=buefy %} | {% ghcard volantis-x/hexo-theme-volantis, theme=solarized-light %} |
+| {% ghcard volantis-x/hexo-theme-volantis, theme=onedark %} | {% ghcard volantis-x/hexo-theme-volantis, theme=solarized-dark %} |
+| {% ghcard volantis-x/hexo-theme-volantis, theme=algolia %} | {% ghcard volantis-x/hexo-theme-volantis, theme=calm %} |
+
+<!-- endtab -->
+{% endtabs %}
+
+### 2.13 github 徽标 ghbdage
+
+{% tabs 徽标ghbdage %}
+<!-- tab 标签语法  -->
+```MARKDOWN
+{% bdage [right],[left],[logo]||[color],[link],[title]||[option] %}
+```
+<!-- endtab -->
+
+<!-- tab 配置参数 -->
+1. {% span red, left %}：徽标左边的信息，必选参数。
+2. {% span red, right %}： 徽标右边的信息，必选参数，
+3. {% span red, logo %}：徽标图标，图标名称详见 simpleicons，可选参数。
+4. {% span red, color %}：徽标右边的颜色，可选参数。
+5. {% span red, link %}：指向的链接，可选参数。
+6. {% span red, title %}：徽标的额外信息，可选参数。主要用于优化 SEO，但 object 标签不会像 a 标签一样在鼠标悬停显示 title 信息。
+7. {% span red, option %}：自定义参数，支持 shields.io 的全部 API 参数支持，具体参数可以参看上文中的拓展写法示例。形式为 name1=value2&name2=value2。
+
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+1.基本参数，定义徽标左右文字和图标
+```MARKDOWN
+{% bdage Theme,Butterfly %}
+{% bdage Frame,Hexo,hexo %}
+```
+2.信息参数，定义徽标右侧内容背景色，指向链接
+```MARKDOWN
+{% bdage CDN,JsDelivr,jsDelivr||abcdef,https://metroui.org.ua/index.html,本站使用JsDelivr为静态资源提供CDN加速 %}
+//如果是跨顺序省略可选参数，仍然需要写个逗号,用作分割
+{% bdage Source,GitHub,GitHub||,https://github.com/ %}
+```
+3.拓展参数，支持 shields 的 API 的全部参数内容
+```MARKDOWN
+{% bdage Hosted,Vercel,Vercel||brightgreen,https://vercel.com/,本站采用双线部署，默认线路托管于Vercel||style=social&logoWidth=20 %}
+//如果是跨顺序省略可选参数组，仍然需要写双竖线||用作分割
+{% bdage Hosted,Vercel,Vercel||||style=social&logoWidth=20&logoColor=violet %}
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
+1.基本参数，定义徽标左右文字和图标
+
+{% bdage Theme,Butterfly %}
+{% bdage Frame,Hexo,hexo %}
+
+2.信息参数，定义徽标右侧内容背景色，指向链接
+
+{% bdage CDN,JsDelivr,jsDelivr||abcdef,https://metroui.org.ua/index.html,本站使用JsDelivr为静态资源提供CDN加速 %}
+//如果是跨顺序省略可选参数，仍然需要写个逗号,用作分割
+{% bdage Source,GitHub,GitHub||,https://github.com/ %}
+
+3.拓展参数，支持 shields 的 API 的全部参数内容
+
+{% bdage Hosted,Vercel,Vercel||brightgreen,https://vercel.com/,本站采用双线部署，默认线路托管于Vercel||style=social&logoWidth=20 %}
+//如果是跨顺序省略可选参数组，仍然需要写双竖线||用作分割
+{% bdage Hosted,Vercel,Vercel||||style=social&logoWidth=20&logoColor=violet %}
+
+<!-- endtab -->
+{% endtabs %}
+
+### 2.14 网站卡片 sites
+
+{% tabs 网站卡片sites %}
+<!-- tab 标签语法  -->
+```MARKDOWN
+{% sitegroup %}
+{% site 标题, url=链接, screenshot=截图链接, avatar=头像链接（可选）, description=描述（可选） %}
+{% site 标题, url=链接, screenshot=截图链接, avatar=头像链接（可选）, description=描述（可选） %}
+{% endsitegroup %}
+```
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+```MARKDOWN
+{% sitegroup %}
+{% site xaoxuu, url=https://xaoxuu.com, screenshot=https://i.loli.net/2020/08/21/VuSwWZ1xAeUHEBC.jpg, avatar=https://cdn.jsdelivr.net/gh/fomalhaut1998/cdn-assets/avatar/avatar.png, description=简约风格 %}
+{% site inkss, url=https://inkss.cn, screenshot=https://i.loli.net/2020/08/21/Vzbu3i8fXs6Nh5Y.jpg, avatar=https://cdn.jsdelivr.net/gh/inkss/common@master/static/web/avatar.jpg, description=这是一段关于这个网站的描述文字 %}
+{% site MHuiG, url=https://blog.mhuig.top, screenshot=https://i.loli.net/2020/08/22/d24zpPlhLYWX6D1.png, avatar=https://cdn.jsdelivr.net/gh/MHuiG/imgbed@master/data/p.png, description=这是一段关于这个网站的描述文字 %}
+{% site Colsrch, url=https://colsrch.top, screenshot=https://i.loli.net/2020/08/22/dFRWXm52OVu8qfK.png, avatar=https://cdn.jsdelivr.net/gh/Colsrch/images/Colsrch/avatar.jpg, description=这是一段关于这个网站的描述文字 %}
+{% site Linhk1606, url=https://linhk1606.github.io, screenshot=https://i.loli.net/2020/08/21/3PmGLCKicnfow1x.png, avatar=https://i.loli.net/2020/02/09/PN7I5RJfFtA93r2.png, description=这是一段关于这个网站的描述文字 %}
+{% endsitegroup %}
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
+{% sitegroup %}
+{% site xaoxuu, url=https://xaoxuu.com, screenshot=https://i.loli.net/2020/08/21/VuSwWZ1xAeUHEBC.jpg, avatar=https://cdn.jsdelivr.net/gh/fomalhaut1998/cdn-assets/avatar/avatar.png, description=简约风格 %}
+{% site inkss, url=https://inkss.cn, screenshot=https://i.loli.net/2020/08/21/Vzbu3i8fXs6Nh5Y.jpg, avatar=https://cdn.jsdelivr.net/gh/inkss/common@master/static/web/avatar.jpg, description=这是一段关于这个网站的描述文字 %}
+{% site MHuiG, url=https://blog.mhuig.top, screenshot=https://i.loli.net/2020/08/22/d24zpPlhLYWX6D1.png, avatar=https://cdn.jsdelivr.net/gh/MHuiG/imgbed@master/data/p.png, description=这是一段关于这个网站的描述文字 %}
+{% site Colsrch, url=https://colsrch.top, screenshot=https://i.loli.net/2020/08/22/dFRWXm52OVu8qfK.png, avatar=https://cdn.jsdelivr.net/gh/Colsrch/images/Colsrch/avatar.jpg, description=这是一段关于这个网站的描述文字 %}
+{% site Linhk1606, url=https://linhk1606.github.io, screenshot=https://i.loli.net/2020/08/21/3PmGLCKicnfow1x.png, avatar=https://i.loli.net/2020/02/09/PN7I5RJfFtA93r2.png, description=这是一段关于这个网站的描述文字 %}
+{% endsitegroup %}
+<!-- endtab -->
+{% endtabs %}
+
+### 2.15 行内图片 inlineimage
+
+{% tabs 行内图片inlineimage %}
+<!-- tab 标签语法  -->
+```MARKDOWN
+{% inlineimage 图片链接, height=高度（可选） %}
+```
+<!-- endtab -->
+
+<!-- tab 配置参数 -->
+1. {% span red, 高度 %}：height=20px
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+```MARKDOWN
+这是 {% inlineimage https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/aru-l/0000.gif %} 一段话。
+
+这又是 {% inlineimage https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/aru-l/5150.gif, height=40px %} 一段话。
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
+这是 {% inlineimage https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/aru-l/0000.gif %} 一段话。
+
+这又是 {% inlineimage https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/aru-l/5150.gif, height=40px %} 一段话。
+<!-- endtab -->
+{% endtabs %}
+
+### 2.16 单张图片 image
+
+{% tabs 单张图片image %}
+<!-- tab 标签语法  -->
+```MARKDOWN
+{% image 链接, width=宽度（可选）, height=高度（可选）, alt=描述（可选）, bg=占位颜色（可选） %}
+```
+<!-- endtab -->
+
+<!-- tab 配置参数 -->
+1. {% span red, 图片宽度高度 %}：width=300px, height=32px
+2. {% span red, 图片描述 %}：alt = 图片描述（butterfly 需要在主题配置文件中开启图片描述）
+3. {% span red, 占位背景色 %}：bg=#f2f2f2
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+1.添加描述：
+```MARKDOWN
+{% image https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg, alt=每天下课回宿舍的路，没有什么故事。 %}
+```
+2.指定宽度
+```MARKDOWN
+{% image https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg, width=400px %}
+```
+3.指定宽度并添加描述：
+```MARKDOWN
+{% image https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg, width=400px, alt=每天下课回宿舍的路，没有什么故事。 %}
+```
+4.设置占位背景色：
+```MARKDOWN
+{% image https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg, width=400px, bg=#1D0C04, alt=优化不同宽度浏览的观感 %}
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
+1.添加描述：
+
+{% image https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg, alt=每天下课回宿舍的路，没有什么故事。 %}
+
+2.指定宽度
+
+{% image https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg, width=400px %}
+
+3.指定宽度并添加描述：
+
+{% image https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg, width=400px, alt=每天下课回宿舍的路，没有什么故事。 %}
+
+4.设置占位背景色：
+
+{% image https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg, width=400px, bg=#1D0C04, alt=优化不同宽度浏览的观感 %}
+
+<!-- endtab -->
+{% endtabs %}
+
+### 2.17 音频 audio
+
+{% tabs 音频audio %}
+<!-- tab 标签语法  -->
+```MARKDOWN
+{% audio 音频链接 %}
+```
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+```MARKDOWN
+{% audio https://xxxiuron-music.oss-cn-chengdu.aliyuncs.com/Charlie%20Puth%20-%20See%20You%20Again%20%28Piano%20Demo%20Version%29.mp3 %}
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
+{% audio https://xxxiuron-music.oss-cn-chengdu.aliyuncs.com/Charlie%20Puth%20-%20See%20You%20Again%20%28Piano%20Demo%20Version%29.mp3 %}
+<!-- endtab -->
+{% endtabs %}
+
+### 2.18 视频 video
+
+{% tabs 视频video %}
+<!-- tab 标签语法  -->
+```MARKDOWN
+{% video 视频链接 %}
+```
+<!-- endtab -->
+
+<!-- tab 配置参数 -->
+1. {% span red ,对齐方向 %}：left, center, right
+2. {% span red, 列数 %}：逗号后面直接写列数，支持 1 ～ 4 列。
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+1.100% 宽度
+```MARKDOWN
+{% video https://github.com/volantis-x/volantis-docs/releases/download/assets/IMG_0341.mov %}
+```
+2.50% 宽度
+```MARKDOWN
+{% video https://github.com/volantis-x/volantis-docs/releases/download/assets/IMG_0341.mov %}
+```
+3.25% 宽度
+```MARKDOWN
+{% videos, 4 %}
+{% video https://github.com/volantis-x/volantis-docs/releases/download/assets/IMG_0341.mov %}
+{% video https://github.com/volantis-x/volantis-docs/releases/download/assets/IMG_0341.mov %}
+{% video https://github.com/volantis-x/volantis-docs/releases/download/assets/IMG_0341.mov %}
+{% video https://github.com/volantis-x/volantis-docs/releases/download/assets/IMG_0341.mov %}
+{% video https://github.com/volantis-x/volantis-docs/releases/download/assets/IMG_0341.mov %}
+{% video https://github.com/volantis-x/volantis-docs/releases/download/assets/IMG_0341.mov %}
+{% video https://github.com/volantis-x/volantis-docs/releases/download/assets/IMG_0341.mov %}
+{% video https://github.com/volantis-x/volantis-docs/releases/download/assets/IMG_0341.mov %}
+{% endvideos %}
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
+1.100% 宽度
+
+{% video https://github.com/volantis-x/volantis-docs/releases/download/assets/IMG_0341.mov %}
+
+2.50% 宽度
+
+{% video https://github.com/volantis-x/volantis-docs/releases/download/assets/IMG_0341.mov %}
+
+3.25% 宽度
+
+{% videos, 4 %}
+{% video https://github.com/volantis-x/volantis-docs/releases/download/assets/IMG_0341.mov %}
+{% video https://github.com/volantis-x/volantis-docs/releases/download/assets/IMG_0341.mov %}
+{% video https://github.com/volantis-x/volantis-docs/releases/download/assets/IMG_0341.mov %}
+{% video https://github.com/volantis-x/volantis-docs/releases/download/assets/IMG_0341.mov %}
+{% video https://github.com/volantis-x/volantis-docs/releases/download/assets/IMG_0341.mov %}
+{% video https://github.com/volantis-x/volantis-docs/releases/download/assets/IMG_0341.mov %}
+{% video https://github.com/volantis-x/volantis-docs/releases/download/assets/IMG_0341.mov %}
+{% video https://github.com/volantis-x/volantis-docs/releases/download/assets/IMG_0341.mov %}
+{% endvideos %}
+
+<!-- endtab -->
+{% endtabs %}
+
+### 2.19 相册 gallery
+
+{% tabs 相册gallery %}
+<!-- tab 标签语法  -->
+1.gallerygroup 相册图库
+```MARKDOWN
+<div class="gallery-group-main">
+{% galleryGroup name description link img-url %}
+{% galleryGroup name description link img-url %}
+{% galleryGroup name description link img-url %}
+</div>
+```
+2.gallery 相册
+```MARKDOWN
+{% gallery %}
+markdown 圖片格式
+{% endgallery %}
+```
+
+<!-- endtab -->
+
+<!-- tab 配置参数 -->
+* gallerygroup 相册图库
+
+|参数名|	释义|
+|---|---|
+|name	|图库名字|
+|description	|图库描述|
+|link	|链接到对应相册的地址|
+|img-url	|图库封面|
+
+* gallery 相册
+
+区别于旧版的 Gallery 相册，新的 Gallery 相册会自动根据图片长度进行排版，书写也更加方便，与 markdown 格式一样。可根据需要插入到相应的 md。无需再自己配置长宽。建议在粘贴时故意使用长短、大小、横竖不一的图片，会有更好的效果。（尺寸完全相同的图片只会平铺输出，效果很糟糕）
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+1.gallerygroup 相册图库
+```MARKDOWN
+<div class="gallery-group-main">
+{% galleryGroup MC 在Rikkaの六花服务器里留下的足迹 '/gallery/MC/' https://cdn.cbd.int/akilar-candyassets@1.0.36/image/1.jpg %}
+{% galleryGroup Gundam 哦咧哇gundam哒！ '/gallery/Gundam/' https://cdn.cbd.int/akilar-candyassets@1.0.36/image/20200907110508327.png %}
+{% galleryGroup I-am-Akilar 某种意义上也算自拍吧 '/gallery/I-am-Akilar/' https://cdn.cbd.int/akilar-candyassets@1.0.36/image/20200907113116651.png %}
+</div>
+```
+2.gallery 相册
+```MARKDOWN
+{% gallery %}
+![](https://i.loli.net/2019/12/25/Fze9jchtnyJXMHN.jpg)
+![](https://i.loli.net/2019/12/25/ryLVePaqkYm4TEK.jpg)
+{% endgallery %}
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
+1.gallerygroup 相册图库
+
+<div class="gallery-group-main">
+{% galleryGroup MC 在Rikkaの六花服务器里留下的足迹 '/gallery/MC/' https://cdn.cbd.int/akilar-candyassets@1.0.36/image/1.jpg %}
+{% galleryGroup Gundam 哦咧哇gundam哒！ '/gallery/Gundam/' https://cdn.cbd.int/akilar-candyassets@1.0.36/image/20200907110508327.png %}
+{% galleryGroup I-am-Akilar 某种意义上也算自拍吧 '/gallery/I-am-Akilar/' https://cdn.cbd.int/akilar-candyassets@1.0.36/image/20200907113116651.png %}
+</div>
+
+2.gallery 相册
+
+{% gallery %}
+![](https://i.loli.net/2019/12/25/Fze9jchtnyJXMHN.jpg)
+![](https://i.loli.net/2019/12/25/ryLVePaqkYm4TEK.jpg)
+{% endgallery %}
+
+<!-- endtab -->
+{% endtabs %}
+
+### 2.20 折叠框 folding
+
+{% tabs 折叠框folding %}
+<!-- tab 标签语法  -->
+```MARKDOWN
+{% folding 参数（可选）, 标题 %}
+```
+<!-- endtab -->
+
+<!-- tab 配置参数 -->
+1. {% span red, 颜色 %}：blue, cyan, green, yellow, red
+
+2. {% span red, 状态 %}：状态填写 open 代表默认打开。
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+```MARKDOWN
+{% folding 查看图片测试 %}
+
+![](https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper/abstract/41F215B9-261F-48B4-80B5-4E86E165259E.jpeg)
+
+{% endfolding %}
+
+{% folding cyan open, 查看默认打开的折叠框 %}
+
+这是一个默认打开的折叠框。
+
+{% endfolding %}
+
+{% folding green, 查看代码测试 %}
+假装这里有代码块（代码块没法嵌套代码块）
+{% endfolding %}
+
+{% folding yellow, 查看列表测试 %}
+
+- haha
+- hehe
+
+{% endfolding %}
+
+{% folding red, 查看嵌套测试 %}
+
+{% folding blue, 查看嵌套测试2 %}
+
+{% folding 查看嵌套测试3 %}
+
+hahaha <span><img src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/tieba/%E6%BB%91%E7%A8%BD.png' style='height:24px'></span>
+
+{% endfolding %}
+
+{% endfolding %}
+
+{% endfolding %}
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
+{% folding 查看图片测试 %}
+
+![](https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper/abstract/41F215B9-261F-48B4-80B5-4E86E165259E.jpeg)
+
+{% endfolding %}
+
+{% folding cyan open, 查看默认打开的折叠框 %}
+
+这是一个默认打开的折叠框。
+
+{% endfolding %}
+
+{% folding green, 查看代码测试 %}
+假装这里有代码块（代码块没法嵌套代码块）
+{% endfolding %}
+
+{% folding yellow, 查看列表测试 %}
+
+- haha
+- hehe
+
+{% endfolding %}
+
+{% folding red, 查看嵌套测试 %}
+
+{% folding blue, 查看嵌套测试2 %}
+
+{% folding 查看嵌套测试3 %}
+
+hahaha <span><img src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/tieba/%E6%BB%91%E7%A8%BD.png' style='height:24px'></span>
+
+{% endfolding %}
+
+{% endfolding %}
+
+{% endfolding %}
+<!-- endtab -->
+{% endtabs %}
+
+### 2.21 分栏 tab
+
+{% tabs 分栏tab %}
+<!-- tab 标签语法  -->
+```MARKDOWN
+{% tabs Unique name, [index] %}
+<!-- tab [Tab caption] [@icon] -->
+Any content (support inline tags too).
+<!-- endtab -->
+{% endtabs %}
+```
+<!-- endtab -->
+
+<!-- tab 配置参数 -->
+1. Unique name :
+
+* 选项卡块标签的唯一名称，不带逗号。
+
+* 将在 #id 中用作每个标签及其索引号的前缀。
+
+* 如果名称中包含空格，则对于生成 #id，所有空格将由破折号代替。
+
+* 仅当前帖子 / 页面的 URL 必须是唯一的！
+
+2. [index]:
+
+* 活动选项卡的索引号。
+
+* 如果未指定，将选择第一个标签（1）。
+
+* 如果 index 为 - 1，则不会选择任何选项卡。
+
+* 可选参数。
+
+3. [Tab caption]:
+
+* 当前选项卡的标题。
+
+* 如果未指定标题，则带有制表符索引后缀的唯一名称将用作制表符的标题。
+
+* 如果未指定标题，但指定了图标，则标题将为空。
+
+* 可选参数。
+
+4. [@icon]:
+
+* FontAwesome 图标名称（全名，看起来像 “fas fa-font”）
+
+* 可以指定带空格或不带空格；
+
+* 例如’Tab caption @icon’ 和 ‘Tab caption@icon’.
+
+* 可选参数。
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+1.Demo 1 - 预设选择第一个【默认】
+```MARKDOWN
+{% tabs test1 %}
+<!-- tab -->
+**This is Tab 1.**
+<!-- endtab -->
+
+<!-- tab -->
+**This is Tab 2.**
+<!-- endtab -->
+
+<!-- tab -->
+**This is Tab 3.**
+<!-- endtab -->
+{% endtabs %}
+```
+2.Demo 2 - 预设选择 tabs
+```MARKDOWN
+{% tabs test2, 3 %}
+<!-- tab -->
+**This is Tab 1.**
+<!-- endtab -->
+
+<!-- tab -->
+**This is Tab 2.**
+<!-- endtab -->
+
+<!-- tab -->
+**This is Tab 3.**
+<!-- endtab -->
+{% endtabs %}
+```
+3.Demo 3 - 没有预设值
+```MARKDOWN
+{% tabs test3, -1 %}
+<!-- tab -->
+**This is Tab 1.**
+<!-- endtab -->
+
+<!-- tab -->
+**This is Tab 2.**
+<!-- endtab -->
+
+<!-- tab -->
+**This is Tab 3.**
+<!-- endtab -->
+{% endtabs %}
+```
+4.Demo 4 - 自定义 Tab 名 + 只有 icon + icon 和 Tab 名
+```MARKDOWN
+{% tabs test4 %}
+<!-- tab 第一个Tab -->
+**tab名字为第一个Tab**
+<!-- endtab -->
+
+<!-- tab @fab fa-apple-pay -->
+**只有图标 没有Tab名字**
+<!-- endtab -->
+
+<!-- tab 炸弹@fas fa-bomb -->
+**名字+icon**
+<!-- endtab -->
+{% endtabs %}
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
+1.Demo 1 - 预设选择第一个【默认】
+
+{% tabs test1 %}
+<!-- tab -->
+**This is Tab 1.**
+<!-- endtab -->
+
+<!-- tab -->
+**This is Tab 2.**
+<!-- endtab -->
+
+<!-- tab -->
+**This is Tab 3.**
+<!-- endtab -->
+{% endtabs %}
+
+2.Demo 2 - 预设选择 tabs
+
+{% tabs test2, 3 %}
+<!-- tab -->
+**This is Tab 1.**
+<!-- endtab -->
+
+<!-- tab -->
+**This is Tab 2.**
+<!-- endtab -->
+
+<!-- tab -->
+**This is Tab 3.**
+<!-- endtab -->
+{% endtabs %}
+
+3.Demo 3 - 没有预设值
+
+{% tabs test3, -1 %}
+<!-- tab -->
+**This is Tab 1.**
+<!-- endtab -->
+
+<!-- tab -->
+**This is Tab 2.**
+<!-- endtab -->
+
+<!-- tab -->
+**This is Tab 3.**
+<!-- endtab -->
+{% endtabs %}
+
+4.Demo 4 - 自定义 Tab 名 + 只有 icon + icon 和 Tab 名
+
+{% tabs test4 %}
+<!-- tab 第一个Tab -->
+**tab名字为第一个Tab**
+<!-- endtab -->
+
+<!-- tab @fab fa-apple-pay -->
+**只有图标 没有Tab名字**
+<!-- endtab -->
+
+<!-- tab 炸弹@fas fa-bomb -->
+**名字+icon**
+<!-- endtab -->
+{% endtabs %}
+
+<!-- endtab -->
+{% endtabs %}
+
+### 2.22 诗词标签 poem
+
+{% tabs 诗词标签poem %}
+
+<!-- tab 配置参数 -->
+1. {% span red, title %}：诗词标题
+2. {% span red, author %}：作者，可以不写
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+```MARKDOWN
+{% poem 水调歌头,苏轼 %}
+丙辰中秋，欢饮达旦，大醉，作此篇，兼怀子由。
+明月几时有？把酒问青天。
+不知天上宫阙，今夕是何年？
+我欲乘风归去，又恐琼楼玉宇，高处不胜寒。
+起舞弄清影，何似在人间？
+
+转朱阁，低绮户，照无眠。
+不应有恨，何事长向别时圆？
+人有悲欢离合，月有阴晴圆缺，此事古难全。
+但愿人长久，千里共婵娟。
+{% endpoem %}
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
+{% poem 水调歌头,苏轼 %}
+丙辰中秋，欢饮达旦，大醉，作此篇，兼怀子由。
+明月几时有？把酒问青天。
+不知天上宫阙，今夕是何年？
+我欲乘风归去，又恐琼楼玉宇，高处不胜寒。
+起舞弄清影，何似在人间？
+
+转朱阁，低绮户，照无眠。
+不应有恨，何事长向别时圆？
+人有悲欢离合，月有阴晴圆缺，此事古难全。
+但愿人长久，千里共婵娟。
+{% endpoem %}
+<!-- endtab -->
+{% endtabs %}
+
+### 2.23 阿里图标 icon
+
+{% tabs 阿里图标icon %}
+<!-- tab 标签语法  -->
+```MARKDOWN
+{% icon [icon-xxxx],[font-size] %}
+```
+<!-- endtab -->
+
+<!-- tab 配置参数 -->
+1. {% span red, icon-xxxx %}：表示图标 font-class, 可以在自己的阿里矢量图标库项目的 font-class 引用方案内查询并复制。
+2. {% span red, font-size %}：表示图标大小，直接填写数字即可，单位为 em。图标大小默认值为 1em。
+
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+```MARKDOWN
+{% icon icon-rat_zi %}{% icon icon-rat,2 %}
+
+{% icon icon-ox_chou,3 %}{% icon icon-ox,4 %}
+
+{% icon icon-tiger_yin,5 %}{% icon icon-tiger,6 %}
+
+{% icon icon-rabbit_mao,1 %}{% icon icon-rabbit,2 %}
+
+{% icon icon-dragon_chen,3 %}{% icon icon-dragon,4 %}
+
+{% icon icon-snake_si,5 %}{% icon icon-snake,6 %}
+
+{% icon icon-horse_wu %}{% icon icon-horse,2 %}
+
+{% icon icon-goat_wei,3 %}{% icon icon-goat,4 %}
+
+{% icon icon-monkey_shen,5 %}{% icon icon-monkey,6 %}
+
+{% icon icon-rooster_you %}{% icon icon-rooster,2 %}
+
+{% icon icon-dog_xu,3 %}{% icon icon-dog,4 %}
+
+{% icon icon-boar_hai,5 %}{% icon icon-boar,6 %}
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
+{% icon icon-rat_zi %}{% icon icon-rat,2 %}
+
+{% icon icon-ox_chou,3 %}{% icon icon-ox,4 %}
+
+{% icon icon-tiger_yin,5 %}{% icon icon-tiger,6 %}
+
+{% icon icon-rabbit_mao,1 %}{% icon icon-rabbit,2 %}
+
+{% icon icon-dragon_chen,3 %}{% icon icon-dragon,4 %}
+
+{% icon icon-snake_si,5 %}{% icon icon-snake,6 %}
+
+{% icon icon-horse_wu %}{% icon icon-horse,2 %}
+
+{% icon icon-goat_wei,3 %}{% icon icon-goat,4 %}
+
+{% icon icon-monkey_shen,5 %}{% icon icon-monkey,6 %}
+
+{% icon icon-rooster_you %}{% icon icon-rooster,2 %}
+
+{% icon icon-dog_xu,3 %}{% icon icon-dog,4 %}
+
+{% icon icon-boar_hai,5 %}{% icon icon-boar,6 %}
+<!-- endtab -->
+{% endtabs %}
+
+### 2.24 特效标签 wow
+
+{% tabs 特效标签wow %}
+<!-- tab 标签语法  -->
+```MARKDOWN
+{% wow [animete],[duration],[delay],[offset],[iteration] %}
+内容
+{% endwow %}
+```
+<!-- endtab -->
+
+<!-- tab 配置参数 -->
+1. {% span red, animate %}: 动画样式，效果详见 animate.css 参考文档
+2. {% span red, duration %}: 选填项，动画持续时间，单位可以是 ms 也可以是 s。例如 3s，700ms。
+3. {% span red, delay %}: 选填项，动画开始的延迟时间，单位可以是 ms 也可以是 s。例如 3s，700ms。
+4. {% span red, offse %}t: 选填项，开始动画的距离（相对浏览器底部）
+5. {% span red, iteration %}: 选填项，动画重复的次数
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+1.flip 动画效果。
+```MARKDOWN
+{% wow animate__flip %}
+{% note green 'fas fa-fan' modern%}
+`flip`动画效果。
+{% endnote %}
+{% endwow %}
+```
+2.zoomIn 动画效果，持续 5s，延时 5s，离底部 100 距离时启动，重复 10 次
+```MARKDOWN
+{% wow animate__zoomIn,5s,5s,100,10 %}
+{% note blue 'fas fa-bullhorn' modern%}
+`zoomIn`动画效果，持续`5s`，延时`5s`，离底部`100`距离时启动，重复`10`次
+{% endnote %}
+{% endwow %}
+```
+3.slideInRight 动画效果，持续 5s，延时 5s
+```MARKDOWN
+{% wow animate__slideInRight,5s,5s %}
+{% note orange 'fas fa-car' modern%}
+`slideInRight`动画效果，持续`5s`，延时`5s`。
+{% endnote %}
+{% endwow %}
+```
+4.heartBeat 动画效果，延时 5s，重复 10 次。此处注意不用的参数位置要留空，用逗号间隔。
+```MARKDOWN
+{% wow animate__heartBeat,,5s,,10 %}
+{% note red 'fas fa-battery-half' modern%}
+`heartBeat`动画效果，延时`5s`，重复`10`次。
+{% endnote %}
+{% endwow %}
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
+1.flip 动画效果。
+
+{% wow animate__flip %}
+{% note green 'fas fa-fan' modern%}
+`flip`动画效果。
+{% endnote %}
+{% endwow %}
+
+2.zoomIn 动画效果，持续 5s，延时 5s，离底部 100 距离时启动，重复 10 次
+
+{% wow animate__zoomIn,5s,5s,100,10 %}
+{% note blue 'fas fa-bullhorn' modern %}
+`zoomIn`动画效果，持续`5s`，延时`5s`，离底部`100`距离时启动，重复`10`次
+{% endnote %}
+{% endwow %}
+
+3.slideInRight 动画效果，持续 5s，延时 5s
+
+{% wow animate__slideInRight,5s,5s %}
+{% note orange 'fas fa-car' modern %}
+`slideInRight`动画效果，持续`5s`，延时`5s`。
+{% endnote %}
+{% endwow %}
+
+4.heartBeat 动画效果，延时 5s，重复 10 次。此处注意不用的参数位置要留空，用逗号间隔。
+
+{% wow animate__heartBeat,,5s,,10 %}
+{% note red 'fas fa-battery-half' modern %}
+`heartBeat`动画效果，延时`5s`，重复`10`次。
+{% endnote %}
+{% endwow %}
+
+<!-- endtab -->
+{% endtabs %}
+
+### 2.25 进度条 progress
+
+{% tabs 进度条progress %}
+<!-- tab 标签语法  -->
+```MARKDOWN
+{% progress [width] [color] [text] %}
+```
+<!-- endtab -->
+
+<!-- tab 配置参数 -->
+1. {% span red ,width %}: 0 到 100 的阿拉伯数字
+2. {% span red ,color %}: 颜色，取值有 red,yellow,green,cyan,blue,gray
+3. {% span red, text %}: 进度条上的文字内容
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+```MARKDOWN
+{% progress 10 red 进度条样式预览 %}
+{% progress 30 yellow 进度条样式预览 %}
+{% progress 50 green 进度条样式预览 %}
+{% progress 70 cyan 进度条样式预览 %}
+{% progress 90 blue 进度条样式预览 %}
+{% progress 100 gray 进度条样式预览 %}
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
+{% progress 10 red 进度条样式预览 %}
+{% progress 30 yellow 进度条样式预览 %}
+{% progress 50 green 进度条样式预览 %}
+{% progress 70 cyan 进度条样式预览 %}
+{% progress 90 blue 进度条样式预览 %}
+{% progress 100 gray 进度条样式预览 %}
+<!-- endtab -->
+{% endtabs %}
+
+### 2.26 注释 notation
+
+{% tabs 注释notation %}
+<!-- tab 标签语法  -->
+```MARKDOWN
+{% nota [label] , [text] %}
+```
+<!-- endtab -->
+
+<!-- tab 配置参数 -->
+1. {% span red, label %}: 注释词汇
+
+2. {% span red, text %}: 悬停显示的注解内容
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+```MARKDOWN
+{% nota 把鼠标移动到我上面试试 ,可以看到注解内容出现在顶栏 %}
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
+{% nota 把鼠标移动到我上面试试 ,可以看到注解内容出现在顶栏 %}
+<!-- endtab -->
+{% endtabs %}
+
+### 2.27 气泡注释 bubble
+
+{% tabs 气泡注释bubble %}
+<!-- tab 标签语法  -->
+```MARKDOWN
+{% bubble [content] , [notation] ,[background-color] %}
+```
+<!-- endtab -->
+
+<!-- tab 配置参数 -->
+1. {% span red ,content %}: 注释词汇
+2. {% span red ,notation %}: 悬停显示的注解内容
+3. {% span red ,background-color %}: 可选，气泡背景色。默认为 “#71a4e3”
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+```MARKDOWN
+最近我学到了不少新玩意儿（虽然对很多大佬来说这些已经是旧技术了），比如CSS的{% bubble 兄弟相邻选择器,"例如 h1 + p {margin-top:50px;}" %}，{% bubble flex布局,"Flex 是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型提供最大的灵活性","#ec5830" %}，{% bubble transform变换,"transform 属性向元素应用 2D 或 3D 转换。该属性允许我们对元素进行旋转、缩放、移动或倾斜。","#1db675" %}，animation的{% bubble 贝塞尔速度曲线,"贝塞尔曲线(Bézier curve)，又称贝兹曲线或贝济埃曲线，是应用于二维图形应用程序的数学曲线。一般的矢量图形软件通过它来精确画出曲线，贝兹曲线由线段与节点组成，节点是可拖动的支点，线段像可伸缩的皮筋","#de4489" %}写法，还有今天刚看到的{% bubble clip-path,"clip-path属性使用裁剪方式创建元素的可显示区域。区域内的部分显示，区域外的隐藏。","#868fd7" %}属性。这些对我来说很新颖的概念狠狠的冲击着我以前积累起来的设计思路。
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
+最近我学到了不少新玩意儿（虽然对很多大佬来说这些已经是旧技术了），比如CSS的{% bubble 兄弟相邻选择器,"例如 h1 + p {margin-top:50px;}" %}，{% bubble flex布局,"Flex 是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型提供最大的灵活性","#ec5830" %}，{% bubble transform变换,"transform 属性向元素应用 2D 或 3D 转换。该属性允许我们对元素进行旋转、缩放、移动或倾斜。","#1db675" %}，animation的{% bubble 贝塞尔速度曲线,"贝塞尔曲线(Bézier curve)，又称贝兹曲线或贝济埃曲线，是应用于二维图形应用程序的数学曲线。一般的矢量图形软件通过它来精确画出曲线，贝兹曲线由线段与节点组成，节点是可拖动的支点，线段像可伸缩的皮筋","#de4489" %}写法，还有今天刚看到的{% bubble clip-path,"clip-path属性使用裁剪方式创建元素的可显示区域。区域内的部分显示，区域外的隐藏。","#868fd7" %}属性。这些对我来说很新颖的概念狠狠的冲击着我以前积累起来的设计思路。
+<!-- endtab -->
+{% endtabs %}
+
+### 2.28 引用文献 reference
+
+{% tabs 引用文献reference %}
+<!-- tab 标签语法  -->
+```MARKDOWN
+{% referto [id] , [literature] %}
+{% referfrom [id] , [literature] , [url] %}
+```
+<!-- endtab -->
+
+<!-- tab 配置参数 -->
+1. referto 引用上标
+
+* id: 上标序号内容，需与 referfrom 标签的 id 对应才能实现跳转
+
+* literature: 引用的参考文献名称
+
+2. referfrom 引用出处
+
+* id: 序号内容，需与 referto 标签的 id 对应才能实现 跳转
+
+* literature: 引用的参考文献名称
+
+* url: 引用的参考文献链接，可省略
+
+
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+```MARKDOWN
+Akilarの糖果屋(akilar.top)是一个私人性质的博客{% referto '[1]','Akilarの糖果屋群聊简介' %}，从各类教程至生活点滴，无话不谈。建群的目的是提供一个闲聊的场所。博客采用Hexo框架{% referto '[2]','Hexo中文文档' %}，Butterfly主题{% referto '[3]','Butterfly 安装文档(一) 快速开始' %}
+
+本项目参考了Volantis{% referto '[4]','hexo-theme-volantis 标签插件' %}的标签样式。引入`[tag].js`，并针对`butterfly`主题修改了相应的`[tag].styl`。在此鸣谢`Volantis`主题众开发者。
+主要参考内容包括各个volantis的内置标签插件文档{% referto '[5]','Volantis文档:内置标签插件' %}
+Butterfly主题的各个衍生魔改{% referto '[6]','Butterfly 安装文档:标签外挂（Tag Plugins' %}{% referto '[7]','小弋の生活馆全样式预览' %}{% referto '[8]','l-lin-font-awesome-animation' %}{% referto '[9]','小康的butterfly主题使用文档' %}
+
+{% referfrom '[1]','Akilarの糖果屋群聊简介','https://jq.qq.com/?_wv=1027&k=pGLB2C0N' %}
+{% referfrom '[2]','Hexo中文文档','https://hexo.io/zh-cn/docs/' %}
+{% referfrom '[3]','Butterfly 安装文档(一) 快速开始','https://butterfly.js.org/posts/21cfbf15/' %}
+{% referfrom '[4]','hexo-theme-volantis 标签插件','https://volantis.js.org/v5/tag-plugins/' %}
+{% referfrom '[5]','Volantis文档:内置标签插件','https://volantis.js.org/tag-plugins/' %}
+{% referfrom '[6]','Butterfly 安装文档:标签外挂（Tag Plugins','https://butterfly.js.org/posts/4aa8abbe/#%E6%A8%99%E7%B1%A4%E5%A4%96%E6%8E%9B%EF%BC%88Tag-Plugins%EF%BC%89' %}
+{% referfrom '[7]','小弋の生活馆全样式预览','https://lovelijunyi.gitee.io/posts/c898.html' %}
+{% referfrom '[8]','l-lin-font-awesome-animation','https://github.com/l-lin/font-awesome-animation' %}
+{% referfrom '[9]','小康的butterfly主题使用文档','https://www.antmoe.com/posts/3b43914f/' %}
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
+Akilarの糖果屋(akilar.top)是一个私人性质的博客{% referto '[1]','Akilarの糖果屋群聊简介' %}，从各类教程至生活点滴，无话不谈。建群的目的是提供一个闲聊的场所。博客采用Hexo框架{% referto '[2]','Hexo中文文档' %}，Butterfly主题{% referto '[3]','Butterfly 安装文档(一) 快速开始' %}
+
+本项目参考了Volantis{% referto '[4]','hexo-theme-volantis 标签插件' %}的标签样式。引入`[tag].js`，并针对`butterfly`主题修改了相应的`[tag].styl`。在此鸣谢`Volantis`主题众开发者。
+主要参考内容包括各个volantis的内置标签插件文档{% referto '[5]','Volantis文档:内置标签插件' %}
+Butterfly主题的各个衍生魔改{% referto '[6]','Butterfly 安装文档:标签外挂（Tag Plugins' %}{% referto '[7]','小弋の生活馆全样式预览' %}{% referto '[8]','l-lin-font-awesome-animation' %}{% referto '[9]','小康的butterfly主题使用文档' %}
+
+{% referfrom '[1]','Akilarの糖果屋群聊简介','https://jq.qq.com/?_wv=1027&k=pGLB2C0N' %}
+{% referfrom '[2]','Hexo中文文档','https://hexo.io/zh-cn/docs/' %}
+{% referfrom '[3]','Butterfly 安装文档(一) 快速开始','https://butterfly.js.org/posts/21cfbf15/' %}
+{% referfrom '[4]','hexo-theme-volantis 标签插件','https://volantis.js.org/v5/tag-plugins/' %}
+{% referfrom '[5]','Volantis文档:内置标签插件','https://volantis.js.org/tag-plugins/' %}
+{% referfrom '[6]','Butterfly 安装文档:标签外挂（Tag Plugins','https://butterfly.js.org/posts/4aa8abbe/#%E6%A8%99%E7%B1%A4%E5%A4%96%E6%8E%9B%EF%BC%88Tag-Plugins%EF%BC%89' %}
+{% referfrom '[7]','小弋の生活馆全样式预览','https://lovelijunyi.gitee.io/posts/c898.html' %}
+{% referfrom '[8]','l-lin-font-awesome-animation','https://github.com/l-lin/font-awesome-animation' %}
+{% referfrom '[9]','小康的butterfly主题使用文档','https://www.antmoe.com/posts/3b43914f/' %}
+<!-- endtab -->
+{% endtabs %}
+
+###  2.29 PDF 展示
+
+{% tabs PDF展示 %}
+<!-- tab 标签语法  -->
+```MARKDOWN
+{% pdf 文件路径 %}
+```
+<!-- endtab -->
+
+<!-- tab 配置参数 -->
+1. {% span red ,文件路径 %}: 可以是相对路径或者是在线链接
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+```MARKDOWN
+# 1.本地文件:在md文件路径下创建一个同名文件夹，其内放pdf文件名为xxx.pdf的文件
+{% pdf xxx.pdf %}
+# 2.在线链接
+{% pdf https://cdn.jsdelivr.net/gh/Justlovesmile/CDN/pdf/小作文讲义.pdf %}
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
+2. 在线链接 (要放到最外层才能起作用)
+{% pdf https://cdn.jsdelivr.net/gh/Justlovesmile/CDN/pdf/小作文讲义.pdf %}
+<!-- endtab -->
+{% endtabs %}
+
+### 2.30 Hexo-tag-map 插件
+
+{% tabs Hexo-tag-map %}
+<!-- tab 标签语法  -->
+```MARKDOWN
+{% + 标签值 + 经度 + 纬度 + 文本 + 缩放等级 + 宽 + 高 + 默认图层 + %}
+```
+<!-- endtab -->
+
+<!-- tab 配置参数 -->
+|地图名	|标签值 <必填>	|宽 (默认 100%) / 高 (默认 360px)	|缩放等级 (默认 14)	|宽 (默认 100%) / 高 (默认 360px)	|默认图层 (默认 1)|
+|---|---|---|---|---|---|
+|混合地图|map	|百分数或具体值 (100% 或 360px)	|取值 3~18|	百分数或具体值 (100% 或 360px)	|取值 1~7|
+|谷歌地图|googleMap	|百分数或具体值 (100% 或 360px)	|取值 1~20	|百分数或具体值 (100% 或 360px)	|取值 1~3|
+|高德地图|gaodeMap	|百分数或具体值 (100% 或 360px)	|取值 3~18	|百分数或具体值 (100% 或 360px)	|取值 1~3|
+|百度地图|baiduMap	|百分数或具体值 (100% 或 360px)	|取值 4~18	|百分数或具体值 (100% 或 360px)	|取值 1~2|
+|Geoq 地图|geoqMap	|百分数或具体值 (100% 或 360px)	|取值 1~18|	百分数或具体值 (100% 或 360px)	|取值 1~5|
+|openstreet 地图|openstreetMap	|百分数或具体值 (100% 或 360px)	|取值 1~18	|百分数或具体值 (100% 或 360px)	|不支持此参数|
+
+1. 参数之间，用英文逗号相隔
+2. 参数必须按上述事例顺序输入，不得为空
+3. 同一个页面，同一组经纬度值，只能插入一个相同标签值的地图 (若有需要，可以将第二个地图上，经度或纬度末尾删除一两个数)
+4. 参数取值必须在上述范围内
+5. 默认图层：即地图叠加层的值，默认常规地图还是卫星地图，可按地图显示顺序取值
+6. 缩放等级，数字越大，地图比例尺越小，显示的越精细
+7. 除标签值外，其他参数选填，但 每个参数的左边的参数必填
+8. 谷歌地图需要外网才能加载查看
+
+坐标获取：[高德地图坐标拾取系统](https://lbs.amap.com/tools/picker) 、[百度地图坐标拾取系统](https://api.map.baidu.com/lbsapi/getpoint/index.html)
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+```MARKDOWN
+{% map 120.101101,30.239119 %}
+{% googleMap 120.101101,30.239119, 这里是西湖灵隐寺，据说求姻缘很灵验哦！ %}
+{% geoqMap 120.101101,30.239119, 这里是西湖灵隐寺，据说求姻缘很灵验哦！, 13, 90%, 320px, 3 %}
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
+{% map 120.101101,30.239119 %}
+{% googleMap 120.101101,30.239119, 这里是西湖灵隐寺，据说求姻缘很灵验哦！ %}
+{% geoqMap 120.101101,30.239119, 这里是西湖灵隐寺，据说求姻缘很灵验哦！, 13, 90%, 320px, 3 %}
+<!-- endtab -->
+{% endtabs %}
+
+### 2.31 隐藏块
+
+{% tabs 隐藏块 %}
+<!-- tab 标签语法  -->
+```MARKDOWN
+{% hideBlock display,bg,color %}
+content
+{% endhideBlock %}
+```
+<!-- endtab -->
+
+<!-- tab 配置参数 -->
+1. {% span red ,content %}：要隐藏的内容
+2. {% span red ,display %}：展示前按钮显示的文字（可选）
+3. {% span red ,bg %}：按钮的背景颜色（可选）
+4. {% span red,color %}：按钮显示的文字的颜色（可选）
+<!-- endtab -->
+
+<!-- tab 示例源码 -->
+```MARKDOWN
+{% hideBlock 点我预览, blue %}
+这里有张图片：
+<img src="https://s1.vika.cn/space/2022/10/30/b35fce448bc9404a8d65c3ce1e6e46eb" alt="image (1)" style="zoom:67%;" />
+{% endhideBlock %}
+```
+<!-- endtab -->
+
+<!-- tab 渲染演示 -->
+{% hideBlock 点我预览, blue %}
+这里有张图片：
+<img src="https://s1.vika.cn/space/2022/10/30/b35fce448bc9404a8d65c3ce1e6e46eb" alt="image (1)" style="zoom:67%;" />
+{% endhideBlock %}
 <!-- endtab -->
 {% endtabs %}
