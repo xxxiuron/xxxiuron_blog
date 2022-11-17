@@ -1201,7 +1201,7 @@ You can regulate the speed of the animation by adding the CSS class or . faa-fas
 |hide | stars,commits,prs,issues,contribs	| 隐藏指定统计 |
 |count_private|	true	|将私人项目贡献添加到总提交计数中 |
 |show_icons	| true | 显示图标 |
-|theme | 查阅:Available Themes | 主题 |
+|theme | 查阅:[Available Themes](https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md) | 主题 |
 <!-- endtab -->
 
 <!-- tab 示例源码 -->
