@@ -4,10 +4,11 @@
 
 menu:
   首页: / || fas fa-home
-  归档: /archives/ || fas fa-archive
-  标签: /tags/ || fas fa-tags
-  分类: /categories/ || fas fa-folder-open
-  列表||fas fa-list || hide:
+  文章|| fas fa-pen-nib || hide:
+    归档: /archives/ || fas fa-archive
+    标签: /tags/ || fas fa-tags
+    分类: /categories/ || fas fa-folder-open
+  娱乐||fas fa-list || hide:
     音乐: /music/ || fas fa-music
     电影: /movies/ || fas fa-video
   留言板: /comments/ || fas fa-envelope-open
@@ -272,13 +273,13 @@ addtoany:
 comments:
   # Up to two comments system, the first will be shown as default
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus/Remark42/Artalk
-  use: # Valine,Disqus
+  use: Twikoo # Valine,Disqus
   text: true # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
   # If you set it to true, the comment count will be invalid
-  lazyload: false
-  count: false # Display comment count in post's top_img
-  card_post_count: false # Display comment count in Home Page
+  lazyload: true
+  count: true # Display comment count in post's top_img
+  card_post_count: true # Display comment count in Home Page
 
 # disqus
 # https://disqus.com/
@@ -350,9 +351,9 @@ facebook_comments:
 # Twikoo
 # https://github.com/imaegoo/twikoo
 twikoo:
-  envId:
+  envId: https://my-twikoo-self.vercel.app/
   region:
-  visitor: false
+  visitor: ture
   option:
 
 # Giscus
@@ -885,10 +886,14 @@ css_prefix: true
 inject:
   head:
     - <link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'">
+    - <link rel="stylesheet" href="/static/css/progress_bar.css" media="defer" onload="this.media='all'">
+    - <link rel="stylesheet" href="/css/cat.css">
   bottom: 
     - <script defer src="/js/light.js"></script> # 霓虹灯(必须defer否则有时候会不生效)
-    - <div class="aplayer no -destroy" data-id="7751854850" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="true" data-order="random"> </div>
-
+    - <div class="aplayer no -destroy" data-id="7751854850" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false" data-order="random"> </div>
+    - <script async src="//npm.elemecdn.com/pace-js@1.2.4/pace.min.js"></script>
+    - <script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script>
+    - <script defer data-pjax src="/js/cat.js"></script>
 # CDN
 # Don't modify the following settings unless you know how they work
 # 非必要請不要修改
@@ -962,5 +967,3 @@ CDN:
     # prismjs_autoloader:
     # artalk_js:
     # artalk_css:
-
-
