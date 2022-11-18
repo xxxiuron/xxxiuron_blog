@@ -7,7 +7,7 @@ tag:
     -   help
 ---
 {% note warning flat %}文章仅作为本人使用时帮助{% endnote %}
-{% span h3 red ,[Windows PowerToys](https://learn.microsoft.com/en-us/windows/powertoys/) %}
+[Windows PowerToys](https://learn.microsoft.com/en-us/windows/powertoys/)
  ## 0. 安装
  下载相关地址: https://learn.microsoft.com/en-us/windows/powertoys/install
  {% note info flat %}无需下载，直接执行下面步骤即可{% endnote %}

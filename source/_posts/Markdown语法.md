@@ -2,7 +2,9 @@
 title: Markdown语法
 date: 2022-11-15 20:00:00
 updated: 2022-11-17 9:32:00
-tag: 语法
+tag: 
+  - 语法
+  - Markdown
 ---
 
 {% tip info %}本文章借鉴于[Fomalhaut博客](https://www.fomal.cn/posts/2013454d.html){% endtip %}
