@@ -272,3 +272,351 @@ runoob
 ```
 <!-- endtab -->
 {% endtabs %}
+
+### all()
+
+{% tabs 函数 %}
+<!-- tab 描述 -->
+all() 函数用于判断给定的可迭代参数 iterable 中的所有元素是否都为 TRUE，如果是返回 True，否则返回 False。
+
+元素除了是 0、空、None、False 外都算 True。
+
+函数等价于：
+```python
+def all(iterable):
+    for element in iterable:
+        if not element:
+            return False
+    return True
+```
+<!-- endtab -->
+<!-- tab 语法 -->
+```python
+all(iterable)
+```
+<!-- endtab -->
+<!-- tab 参数 -->
+* iterable -- 元组或列表。
+<!-- endtab -->
+<!-- tab 返回值 -->
+如果iterable的所有元素不为0、''、False或者iterable为空，all(iterable)返回True，否则返回False；
+
+**注意**：空元组、空列表返回值为True，这里要特别注意。
+<!-- endtab -->
+<!-- tab 实例 -->
+```python
+>>> all(['a', 'b', 'c', 'd'])  # 列表list，元素都不为空或0
+True
+>>> all(['a', 'b', '', 'd'])   # 列表list，存在一个为空的元素
+False
+>>> all([0, 1，2, 3])          # 列表list，存在一个为0的元素
+False
+   
+>>> all(('a', 'b', 'c', 'd'))  # 元组tuple，元素都不为空或0
+True
+>>> all(('a', 'b', '', 'd'))   # 元组tuple，存在一个为空的元素
+False
+>>> all((0, 1, 2, 3))          # 元组tuple，存在一个为0的元素
+False
+   
+>>> all([])             # 空列表
+True
+>>> all(())             # 空元组
+True
+```
+<!-- endtab -->
+{% endtabs %}
+
+### int()
+
+{% tabs 函数 %}
+<!-- tab 描述 -->
+int() 函数用于将一个字符串或数字转换为整型。
+<!-- endtab -->
+<!-- tab 语法 -->
+```python
+class int(x, base=10)
+```
+<!-- endtab -->
+<!-- tab 参数 -->
+* x -- 字符串或数字。
+* base -- 进制数，默认十进制。
+<!-- endtab -->
+<!-- tab 返回值 -->
+返回整型数据。
+<!-- endtab -->
+<!-- tab 实例 -->
+```python
+>>>int()               # 不传入参数时，得到结果0
+0
+>>> int(3)
+3
+>>> int(3.6)
+3
+>>> int('12',16)        # 如果是带参数base的话，12要以字符串的形式进行输入，12 为 16进制
+18
+>>> int('0xa',16)  
+10  
+>>> int('10',8)  
+8
+```
+<!-- endtab -->
+{% endtabs %}
+
+
+### ord()
+
+{% tabs 函数 %}
+<!-- tab 描述 -->
+ord() 函数是 chr() 函数（对于8位的ASCII字符串）或 unichr() 函数（对于Unicode对象）的配对函数，它以一个字符（长度为1的字符串）作为参数，返回对应的 ASCII 数值，或者 Unicode 数值，如果所给的 Unicode 字符超出了你的 Python 定义范围，则会引发一个 TypeError 的异常。
+<!-- endtab -->
+<!-- tab 语法 -->
+```python
+ord(c)
+```
+<!-- endtab -->
+<!-- tab 参数 -->
+* c -- 字符。
+<!-- endtab -->
+<!-- tab 返回值 -->
+返回值是对应的十进制整数。
+<!-- endtab -->
+<!-- tab 实例 -->
+```python
+>>>ord('a')
+97
+>>> ord('b')
+98
+>>> ord('c')
+99
+```
+<!-- endtab -->
+{% endtabs %}
+
+### str()
+
+{% tabs 函数 %}
+<!-- tab 描述 -->
+str() 函数将对象转化为适于人阅读的形式。
+<!-- endtab -->
+<!-- tab 语法 -->
+```python
+class str(object='')
+```
+<!-- endtab -->
+<!-- tab 参数 -->
+* object -- 对象。
+<!-- endtab -->
+<!-- tab 返回值 -->
+返回一个对象的string格式。
+<!-- endtab -->
+<!-- tab 实例 -->
+```python
+>>>s = 'RUNOOB'
+>>> str(s)
+'RUNOOB'
+>>> dict = {'runoob': 'runoob.com', 'google': 'google.com'};
+>>> str(dict)
+"{'google': 'google.com', 'runoob': 'runoob.com'}"
+```
+<!-- endtab -->
+{% endtabs %}
+
+### any()
+
+{% tabs 函数 %}
+<!-- tab 描述 -->
+any() 函数用于判断给定的可迭代参数 iterable 是否全部为 False，则返回 False，如果有一个为 True，则返回 True。
+
+元素除了是 0、空、FALSE 外都算 TRUE。
+
+函数等价于：
+```python
+def any(iterable):
+    for element in iterable:
+        if element:
+            return True
+    return False
+```
+<!-- endtab -->
+<!-- tab 语法 -->
+```python
+any(iterable)
+```
+<!-- endtab -->
+<!-- tab 参数 -->
+* iterable -- 元组或列表。
+<!-- endtab -->
+<!-- tab 返回值 -->
+如果都为空、0、false，则返回false，如果不都为空、0、false，则返回true。
+<!-- endtab -->
+<!-- tab 实例 -->
+```python
+>>>any(['a', 'b', 'c', 'd'])  # 列表list，元素都不为空或0
+True
+ 
+>>> any(['a', 'b', '', 'd'])   # 列表list，存在一个为空的元素
+True
+ 
+>>> any([0, '', False])        # 列表list,元素全为0,'',false
+False
+ 
+>>> any(('a', 'b', 'c', 'd'))  # 元组tuple，元素都不为空或0
+True
+ 
+>>> any(('a', 'b', '', 'd'))   # 元组tuple，存在一个为空的元素
+True
+ 
+>>> any((0, '', False))        # 元组tuple，元素全为0,'',false
+False
+  
+>>> any([]) # 空列表
+False
+ 
+>>> any(()) # 空元组
+False
+```
+<!-- endtab -->
+{% endtabs %}
+
+### eval()
+
+{% tabs 函数 %}
+<!-- tab 描述 -->
+eval() 函数用来执行一个字符串表达式，并返回表达式的值。
+<!-- endtab -->
+<!-- tab 语法 -->
+```python
+eval(expression[, globals[, locals]])
+```
+<!-- endtab -->
+<!-- tab 参数 -->
+* expression -- 表达式。
+* globals -- 变量作用域，全局命名空间，如果被提供，则必须是一个字典对象。
+* locals -- 变量作用域，局部命名空间，如果被提供，可以是任何映射对象。
+<!-- endtab -->
+<!-- tab 返回值 -->
+返回表达式计算结果。
+<!-- endtab -->
+<!-- tab 实例 -->
+```python
+>>>x = 7
+>>> eval( '3 * x' )
+21
+>>> eval('pow(2,2)')
+4
+>>> eval('2 + 2')
+4
+>>> n=81
+>>> eval("n + 4")
+85
+```
+<!-- endtab -->
+{% endtabs %}
+
+### isinstance()
+
+{% tabs 函数 %}
+<!-- tab 描述 -->
+isinstance() 函数来判断一个对象是否是一个已知的类型，类似 type()。
+{% tip bell %}
+isinstance() 与 type() 区别：
+
+type() 不会认为子类是一种父类类型，不考虑继承关系。
+
+isinstance() 会认为子类是一种父类类型，考虑继承关系。
+
+如果要判断两个类型是否相同推荐使用 isinstance()。
+{% endtip %}
+<!-- endtab -->
+<!-- tab 语法 -->
+```python
+isinstance(object, classinfo)
+```
+<!-- endtab -->
+<!-- tab 参数 -->
+* object -- 实例对象。
+* classinfo -- 可以是直接或间接类名、基本类型或者由它们组成的元组。
+<!-- endtab -->
+<!-- tab 返回值 -->
+如果对象的类型与参数二的类型（classinfo）相同则返回 True，否则返回 False。
+<!-- endtab -->
+<!-- tab 实例 -->
+```python
+>>>a = 2
+>>> isinstance (a,int)
+True
+>>> isinstance (a,str)
+False
+>>> isinstance (a,(str,int,list))    # 是元组中的一个返回 True
+True
+```
+{% span h4 red ,type() 与 isinstance()区别： %}
+```python
+class A:
+    pass
+ 
+class B(A):
+    pass
+ 
+isinstance(A(), A)    # returns True
+type(A()) == A        # returns True
+isinstance(B(), A)    # returns True
+type(B()) == A        # returns False
+```
+<!-- endtab -->
+{% endtabs %}
+
+### pow()
+
+{% tabs 函数 %}
+<!-- tab 描述 -->
+pow() 方法返回 x^y（x 的 y 次方） 的值。
+<!-- endtab -->
+<!-- tab 语法 -->
+以下是 math 模块 pow() 方法的语法:
+```python
+import math
+math.pow( x, y )
+```
+内置的 pow() 方法: 
+```python
+pow(x, y[, z])
+```
+函数是计算 x 的 y 次方，如果 z 在存在，则再对结果进行取模，其结果等效于 pow(x,y) %z。
+
+**注意**：pow() 通过内置的方法直接调用，内置方法会把参数作为整型，而 math 模块则会把参数转换为 float。
+<!-- endtab -->
+<!-- tab 参数 -->
+* x -- 数值表达式。
+* y -- 数值表达式。
+* z -- 数值表达式。
+<!-- endtab -->
+<!-- tab 返回值 -->
+返回 x^y（x的y次方） 的值。
+<!-- endtab -->
+<!-- tab 实例 -->
+```python
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+ 
+import math   # 导入 math 模块
+ 
+print "math.pow(100, 2) : ", math.pow(100, 2)
+# 使用内置，查看输出结果区别
+print "pow(100, 2) : ", pow(100, 2)
+ 
+print "math.pow(100, -2) : ", math.pow(100, -2)
+print "math.pow(2, 4) : ", math.pow(2, 4)
+print "math.pow(3, 0) : ", math.pow(3, 0)
+```
+以上实例运行后输出结果为：
+```python
+math.pow(100, 2) :  10000.0
+pow(100, 2) :  10000
+math.pow(100, -2) :  0.0001
+math.pow(2, 4) :  16.0
+math.pow(3, 0) :  1.0
+```
+<!-- endtab -->
+{% endtabs %}
