@@ -888,6 +888,9 @@ inject:
     - <link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'">
     - <link rel="stylesheet" href="/static/css/progress_bar.css" media="defer" onload="this.media='all'">
     - <link rel="stylesheet" href="/css/cat.css">
+    - <link rel="stylesheet" href="/css/universe.css">
+    - <script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+    - <script>new LingQue.Monitor().init({id:"JtdXiqttw6uC1AmR"});</script>
   bottom: 
     - <script defer src="/js/light.js"></script> # 霓虹灯(必须defer否则有时候会不生效)
     - <div class="aplayer no -destroy" data-id="7751854850" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false" data-order="random"> </div>
@@ -895,6 +898,8 @@ inject:
     - <script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script>
     - <script defer data-pjax src="/js/cat.js"></script>
     - <script defer src="/js/cursor.js"></script>
+    - <canvas id="universe"></canvas>
+    - <script defer src="/js/universe.js"></script>
 # CDN
 # Don't modify the following settings unless you know how they work
 # 非必要請不要修改
