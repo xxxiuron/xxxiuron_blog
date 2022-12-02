@@ -612,14 +612,14 @@ beautify:
 font:
   global-font-size: 15px
   code-font-size: 14px
-  font-family:  YSHST, -apple-system, BlinkMacSystemFont, "Segoe UI", Lato, Roboto, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serif
-  code-font-family: Consolas, YSHST, "Microsoft YaHei", Menlo, "PingFang SC", "Microsoft  JhengHei", sans-serif
+  font-family:  SmileySans, YSHST, -apple-system, BlinkMacSystemFont, "Segoe UI", Lato, Roboto, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serif
+  code-font-family: Consolas, SmileySans, YSHST, "Microsoft YaHei", Menlo, "PingFang SC", "Microsoft  JhengHei", sans-serif
 
 # Font settings for the site title and site subtitle
 # 左上角網站名字 主頁居中網站名字
 blog_title_font: 
   font_link:
-  font-family: YSHST, -apple-system, BlinkMacSystemFont, "Segoe UI", Lato, Roboto, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serif
+  font-family: SmileySans, YSHST, -apple-system, BlinkMacSystemFont, "Segoe UI", Lato, Roboto, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serif
 
 # The setting of divider icon (水平分隔線圖標設置)
 hr_icon:
@@ -894,6 +894,7 @@ inject:
     - <script async src="//npm.elemecdn.com/pace-js@1.2.4/pace.min.js"></script>
     - <script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script>
     - <script defer data-pjax src="/js/cat.js"></script>
+    - <script defer src="/js/cursor.js"></script>
 # CDN
 # Don't modify the following settings unless you know how they work
 # 非必要請不要修改
