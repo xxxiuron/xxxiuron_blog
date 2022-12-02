@@ -133,6 +133,7 @@ cover:
     -  https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/default_cover6.jpg
     -  https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/default_cover7.png
     -  https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/default_cover8.jpg
+    -  https://xxxiuron-picture.oss-cn-chengdu.aliyuncs.com/default_cover9.png
 
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
@@ -351,7 +352,7 @@ facebook_comments:
 # Twikoo
 # https://github.com/imaegoo/twikoo
 twikoo:
-  envId: https://my-twikoo-self.vercel.app/
+  envId: https://twikoo.x-xiuron.com/
   region:
   visitor: ture
   option:
