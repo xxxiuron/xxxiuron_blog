@@ -106,7 +106,7 @@ deploy:
   type: git
   #repo改为repo: git@域名:/var/repo/hexo.git
   repo: git@81.68.85.185:/var/repo/hexo.git
-  branch: master
+  branch: main
 
 
 # 本地搜索
