@@ -103,7 +103,11 @@ theme: butterfly
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  #repo改为repo: git@域名:/var/repo/hexo.git
+  repo: git@81.68.85.185:/var/repo/hexo.git
+  branch: master
+
 
 # 本地搜索
 search:
